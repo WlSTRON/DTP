@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ĐTP - ĐTA | 奖惩建议</title>
+<style>
+  /* ============================================================
+     🔧 PHẦN CHỈNH TỶ LỆ CÁC Ô - BẠN CÓ THỂ TỰ SỬA Ở ĐÂY
+     ============================================================
+     Tổng tất cả dòng phải = 100%
+     
+     SHEET 1 - Đơn thưởng phạt:
+     --row1-h: 0.9%    ← Dòng tiêu đề (Wistron + Biểu đề xuất)
+     --row2-h: 5.8%    ← Dòng labels (Bộ phận, Chức vị...)
+     --row3-h: 5.8%    ← Dòng values (KV2W20, NHÂN VIÊN...)
+     --row4-h: 38.5%   ← Lí do thưởng phạt (khối lớn nhất)
+     --row5-h: 9.8%    ← Đánh giá tác động
+     --row6-h: 3.8%    ← Header thưởng phạt
+     --row7-h: 5.2%    ← Thưởng labels
+     --row8-h: 3%      ← Thưởng tick
+     --row9-h: 5.2%    ← Phạt labels (= row7)
+     --row10-h: 3%     ← Phạt tick (= row8)
+     --row11-h: 4%     ← Chữ ký labels
+     --row12-h: 11.65% ← Chữ ký
+     --row13-h: 2.8%   ← Ghi chú
+     Tổng ≈ 93.4% (phần còn lại table tự cân)
+     
+     SHEET 2 - Điều tra án:
+     --s2row1-h: 7%    ← Tiêu đề
+     --s2row2-h: 7%    ← Họ tên
+     --s2row3-h: 7%    ← Chức vụ
+     --s2row4-h: 7%    ← Số CMT
+     --s2row5-h: 3%    ← Label "Quá trình"
+     --s2row6-h: 32%   ← Nội dung quá trình
+     --s2row7-h: 3.5%  ← Hình thức xử lý
+     --s2row8-h: 12%   ← B. Xử lý
+     --s2row9-h: 21.5% ← Chữ ký
+     ============================================================ */
+
+  :root {
+    /* SHEET 1 — SỬA CÁC GIÁ TRỊ NÀY ĐỂ THAY ĐỔI TỶ LỆ */
+    --row1-h: 0.9%;
+    --row2-h: 5.8%;
+    --row3-h: 5.8%;
+    --row4-h: 38.5%;
+    --row5-h: 9.8%;
+    --row6-h: 3.8%;
+    --row7-h: 5.2%;
+    --row8-h: 3%;
+    --row9-h: 5.2%;
+    --row10-h: 3%;
+    --row11-h: 4%;
+    --row12-h: 11.65%;
+    --row13-h: 2.8%;
+
+    /* SHEET 2 — SỬA CÁC GIÁ TRỊ NÀY ĐỂ THAY ĐỔI TỶ LỆ */
+    --s2row1-h: 7%;
+    --s2row2-h: 7%;
+    --s2row3-h: 7%;
+    --s2row4-h: 7%;
+    --s2row5-h: 3%;
+    --s2row6-h: 32%;
+    --s2row7-h: 3.5%;
+    --s2row8-h: 12%;
+    --s2row9-h: 21.5%;
+  }
+
+  /* ============ PRINT — CHỈ 1 TRANG A4 ============ */
+  @page { size: landscape; margin: 0; }
+  @media print {
+    * { margin:0!important; padding:0!important; }
+    html,body {
+      background:#fff!important;
+      width:297mm!important; height:210mm!important;
+      overflow:hidden!important;
+      margin:0!important; padding:0!important;
+    }
+    .app-header,.no-print,.mobile-form,#form1,#form2,#form3,#form4,#form5,.side-menu,.menu-overlay,.detail-modal,#sopModal { display:none!important; visibility:hidden!important; height:0!important; overflow:hidden!important; }
+    .print-page {
+      display:block!important;
+      box-shadow:none!important;
+      width:297mm!important; height:210mm!important;
+      padding:2mm!important; margin:0!important;
+      position:absolute!important; top:0!important; left:0!important;
+      page-break-after:avoid!important;
+      page-break-inside:avoid!important;
+      overflow:hidden!important;
+      -webkit-print-color-adjust: exact!important;
+      print-color-adjust: exact!important;
+      color-adjust: exact!important;
+    }
+    .print-page.print-hide { display:none!important; }
+    .print-page table { width:100%!important; height:100%!important; }
+    td[contenteditable="true"]:focus { outline:none; background:transparent; }
+    /* Chặn trang thứ 2 */
+    body::after { display:none!important; content:''!important; }
+  }
+
+  /* ============ BASE — THEO HỆ THỐNG SÁNG/TỐI ============ */
+  * { box-sizing:border-box; margin:0; padding:0; }
+
+  :root {
+    --bg: #f5f5f7;
+    --card-bg: rgba(255,255,255,0.85);
+    --card-border: rgba(0,0,0,0.08);
+    --text: #1d1d1f;
+    --text-sub: rgba(0,0,0,0.45);
+    --input-bg: rgba(0,0,0,0.04);
+    --input-border: rgba(0,0,0,0.1);
+    --input-text: #1d1d1f;
+    --header-bg: rgba(245,245,247,0.92);
+    --placeholder: rgba(0,0,0,0.25);
+    --section-title-bg: rgba(0,0,0,0.03);
+    --check-bg: rgba(0,0,0,0.03);
+    --check-border: rgba(0,0,0,0.08);
+    --check-selected-bg: linear-gradient(135deg,rgba(245,87,108,0.12),rgba(240,147,251,0.12));
+    --check-selected-border: rgba(245,87,108,0.4);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f0c29;
+      --card-bg: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.1);
+      --text: #f5f5f7;
+      --text-sub: rgba(255,255,255,0.45);
+      --input-bg: rgba(255,255,255,0.08);
+      --input-border: rgba(255,255,255,0.12);
+      --input-text: #fff;
+      --header-bg: rgba(15,12,41,0.95);
+      --placeholder: rgba(255,255,255,0.25);
+      --section-title-bg: rgba(255,255,255,0.08);
+      --check-bg: rgba(255,255,255,0.06);
+      --check-border: rgba(255,255,255,0.1);
+      --check-selected-bg: linear-gradient(135deg,rgba(245,87,108,0.3),rgba(240,147,251,0.3));
+      --check-selected-border: rgba(245,87,108,0.5);
+    }
+  }
+
+  body {
+    font-family:'Times New Roman',Times,serif;
+    background:var(--bg);
+    min-height:100vh;
+    color:var(--text);
+    overflow-x:hidden;
+  }
+
+  /* ============ HEADER ============ */
+  .app-header {
+    position:sticky; top:0; z-index:100;
+    background:var(--header-bg);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--card-border);
+    padding:12px 16px;
+    animation:slideDown 0.5s ease;
+  }
+  @keyframes slideDown { from{transform:translateY(-100%);opacity:0} to{transform:translateY(0);opacity:1} }
+
+  .app-title {
+    text-align:center;
+    font-size:14px;
+    font-weight:900;
+    color:#00607a;
+    margin-bottom:10px;
+    letter-spacing:1.5px;
+    position:relative;
+    overflow:hidden;
+    min-height:20px;
+  }
+  .app-title .char {
+    display:inline-block;
+    opacity:0;
+    color:#003d4d;
+    font-weight:900;
+    animation:charAppear 0.4s ease forwards;
+    text-shadow:0 0 8px rgba(0,96,122,0.3);
+  }
+  @keyframes charAppear {
+    0%{opacity:0;transform:translateY(8px) scale(0.5);filter:blur(4px)}
+    60%{opacity:1;transform:translateY(-2px) scale(1.1);filter:blur(0)}
+    100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+  }
+  .app-title .sparkle {
+    position:absolute;
+    width:3px;height:3px;
+    background:#a0c800;
+    border-radius:50%;
+    animation:sparkle 2.5s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes sparkle {
+    0%,100%{opacity:0;transform:scale(0)}
+    50%{opacity:1;transform:scale(2)}
+  }
+
+  .nav-buttons {
+    display:flex;
+    gap:8px;
+    justify-content:center;
+  }
+  .nav-btn {
+    flex:1; max-width:160px;
+    padding:10px 8px;
+    border:none;
+    border-radius:12px;
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer;
+    transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+    text-align:center;
+    line-height:1.3;
+    position:relative;
+    overflow:hidden;
+  }
+  .nav-btn::after {
+    content:'';
+    position:absolute;
+    top:50%;left:50%;
+    width:0;height:0;
+    border-radius:50%;
+    background:rgba(255,255,255,0.3);
+    transition:all 0.5s;
+    transform:translate(-50%,-50%);
+  }
+  .nav-btn:active::after { width:300px; height:300px; }
+
+  .nav-btn.tab1 {
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:#fff;
+    box-shadow:0 4px 15px rgba(102,126,234,0.3);
+  }
+  .nav-btn.tab1.active {
+    background:linear-gradient(135deg,#f093fb,#f5576c);
+    box-shadow:0 4px 20px rgba(245,87,108,0.5);
+    transform:scale(1.03);
+  }
+  .nav-btn.tab2 {
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    color:#fff;
+    box-shadow:0 4px 15px rgba(79,172,254,0.3);
+  }
+  .nav-btn.tab2.active {
+    background:linear-gradient(135deg,#43e97b,#38f9d7);
+    box-shadow:0 4px 20px rgba(67,233,123,0.5);
+    transform:scale(1.03);
+  }
+  .nav-btn.print-btn {
+    background:linear-gradient(135deg,#fa709a,#fee140);
+    color:#fff;
+    box-shadow:0 4px 15px rgba(250,112,154,0.4);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100%{box-shadow:0 4px 15px rgba(250,112,154,0.4)}
+    50%{box-shadow:0 4px 25px rgba(250,112,154,0.7)}
+  }
+  .nav-btn.print-btn:active { animation:none; transform:scale(0.95); }
+
+  /* ============ MOBILE FORM ============ */
+  .mobile-form {
+    padding:12px;
+    animation:fadeUp 0.6s ease;
+  }
+  @keyframes fadeUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
+
+  .form-section {
+    background:var(--card-bg);
+    backdrop-filter:blur(10px);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    margin-bottom:12px;
+    overflow:hidden;
+    animation:fadeUp 0.6s ease both;
+  }
+  .form-section:nth-child(2) { animation-delay:0.1s; }
+  .form-section:nth-child(3) { animation-delay:0.2s; }
+  .form-section:nth-child(4) { animation-delay:0.3s; }
+  .form-section:nth-child(5) { animation-delay:0.4s; }
+  .form-section:nth-child(6) { animation-delay:0.5s; }
+
+  .section-title {
+    padding:10px 14px;
+    font-size:13px;
+    font-weight:700;
+    background:var(--section-title-bg);
+    border-bottom:1px solid var(--card-border);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .section-title .icon {
+    width:28px; height:28px;
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px;
+    flex-shrink:0;
+  }
+  .section-title .icon.purple { background:linear-gradient(135deg,#667eea,#764ba2); }
+  .section-title .icon.blue { background:linear-gradient(135deg,#4facfe,#00f2fe); }
+  .section-title .icon.green { background:linear-gradient(135deg,#43e97b,#38f9d7); }
+  .section-title .icon.red { background:linear-gradient(135deg,#fa709a,#fee140); }
+  .section-title .icon.orange { background:linear-gradient(135deg,#f7971e,#ffd200); }
+
+  .form-row {
+    display:flex;
+    flex-wrap:wrap;
+    gap:1px;
+    padding:8px 12px;
+    border-bottom:1px solid var(--card-border);
+  }
+  .form-row:last-child { border-bottom:none; }
+
+  .form-field {
+    flex:1; min-width:45%;
+  }
+  .form-field.full { min-width:100%; }
+
+  .field-label {
+    font-size:10px;
+    color:var(--text-sub);
+    margin-bottom:3px;
+    font-weight:600;
+  }
+  .field-input {
+    width:100%;
+    background:var(--input-bg);
+    border:1px solid var(--input-border);
+    border-radius:8px;
+    padding:8px 10px;
+    color:var(--input-text);
+    font-size:13px;
+    font-family:'Times New Roman',serif;
+    transition:all 0.3s;
+    resize:vertical;
+  }
+  .field-input::placeholder { color:var(--placeholder); font-style:italic; }
+  .field-input:focus {
+    outline:none;
+    border-color:rgba(102,126,234,0.6);
+    background:rgba(255,255,255,0.12);
+    box-shadow:0 0 0 3px rgba(102,126,234,0.15);
+  }
+  textarea.field-input { min-height:120px; line-height:1.4; }
+  textarea.field-input.small { min-height:130px; }
+
+  /* Checkbox grid */
+  .check-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:6px;
+    padding:8px 12px;
+  }
+  .check-item {
+    background:var(--check-bg);
+    border:1px solid var(--check-border);
+    border-radius:10px;
+    padding:8px 4px;
+    text-align:center;
+    font-size:9px;
+    line-height:1.3;
+    cursor:pointer;
+    transition:all 0.3s;
+    user-select:none;
+  }
+  .check-item:active { transform:scale(0.95); }
+  .check-item.selected {
+    background:var(--check-selected-bg);
+    border-color:var(--check-selected-border);
+    box-shadow:0 0 12px rgba(245,87,108,0.2);
+  }
+  .check-item .vi { font-weight:600; color:var(--text); }
+  .check-item .cn { color:var(--text-sub); font-size:8px; }
+
+  /* ============ HAMBURGER MENU ============ */
+  .hamburger {
+    position:absolute; right:12px; top:50%; transform:translateY(-50%);
+    width:32px; height:32px; cursor:pointer; z-index:200;
+    display:flex; flex-direction:column; justify-content:center; gap:5px; padding:4px;
+  }
+  .hamburger span {
+    display:block; height:2.5px; background:var(--text); border-radius:2px;
+    transition:all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+  .side-menu {
+    position:fixed; top:0; right:-280px; width:280px; height:100vh;
+    background:var(--card-bg); backdrop-filter:blur(30px); -webkit-backdrop-filter:blur(30px);
+    border-left:1px solid var(--card-border);
+    z-index:150; transition:right 0.35s cubic-bezier(0.4,0,0.2,1);
+    overflow-y:auto; padding:60px 0 20px;
+    box-shadow:-4px 0 30px rgba(0,0,0,0.15);
+  }
+  .side-menu.open { right:0; }
+  .menu-overlay {
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.4); z-index:140; opacity:0; pointer-events:none;
+    transition:opacity 0.3s;
+  }
+  .menu-overlay.open { opacity:1; pointer-events:auto; }
+
+  .menu-item {
+    padding:14px 20px; font-size:14px; font-weight:600; cursor:pointer;
+    border-bottom:1px solid var(--card-border); transition:all 0.2s;
+    display:flex; align-items:center; gap:10px; color:var(--text);
+  }
+  .menu-item:active { background:var(--input-bg); transform:scale(0.98); }
+  .menu-item .mi-icon {
+    width:32px; height:32px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;
+  }
+  .menu-item .mi-icon.purple { background:linear-gradient(135deg,#667eea,#764ba2); }
+  .menu-item .mi-icon.blue { background:linear-gradient(135deg,#4facfe,#00f2fe); }
+  .menu-item .mi-icon.red { background:linear-gradient(135deg,#fa709a,#fee140); }
+  .menu-item .mi-icon.green { background:linear-gradient(135deg,#43e97b,#38f9d7); }
+  .menu-item .mi-icon.teal { background:linear-gradient(135deg,#00607a,#00a8cc); }
+
+  /* Lookup dropdown */
+  .dept-lookup {
+    display:none; margin:4px 12px 8px; background:var(--card-bg);
+    border:1px solid var(--check-selected-border); border-radius:10px;
+    max-height:120px; overflow-y:auto; animation:fadeUp 0.3s ease;
+  }
+  .dept-lookup.show { display:block; }
+  .lookup-item {
+    padding:8px 12px; font-size:11px; border-bottom:1px solid var(--card-border);
+    cursor:pointer; transition:background 0.2s; color:var(--text);
+  }
+  .lookup-item:active { background:var(--input-bg); }
+  .lookup-item .li-dept { font-weight:700; font-size:12px; }
+  .lookup-item .li-sub { color:var(--text-sub); font-size:10px; }
+
+  /* Detail modal */
+  .detail-modal {
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.5); z-index:300; display:none;
+    align-items:center; justify-content:center; padding:16px;
+  }
+  .detail-modal.show { display:flex; }
+  .detail-card {
+    background:var(--card-bg); backdrop-filter:blur(20px);
+    border:1px solid var(--card-border); border-radius:20px;
+    width:100%; max-width:380px; max-height:80vh; overflow-y:auto;
+    animation:fadeUp 0.4s ease; padding:0;
+  }
+  .detail-card { animation:modalPop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+  @keyframes modalPop { from{transform:scale(0.7) translateY(30px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
+  .detail-row { transition:all 0.3s; border-radius:8px; padding:10px 4px; }
+  .detail-row:hover, .detail-row:active { background:var(--input-bg); }
+  .detail-section-title { position:relative; overflow:hidden; }
+  .detail-section-title::after { content:''; position:absolute; bottom:0; left:0; width:100%; height:2px; background:linear-gradient(90deg,#00607a,#a0c800,#00607a); background-size:200% 100%; animation:borderShimmer 2s linear infinite; }
+  @keyframes borderShimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+  .detail-header {
+    padding:16px; text-align:center;
+    background:linear-gradient(135deg,#00607a,#00a8cc);
+    border-radius:20px 20px 0 0; color:#fff;
+  }
+  .detail-header h3 { font-size:16px; margin-bottom:4px; }
+  .detail-header p { font-size:11px; opacity:0.8; }
+  .detail-close {
+    position:absolute; top:12px; right:14px; width:28px; height:28px;
+    border-radius:50%; background:rgba(255,255,255,0.2); color:#fff;
+    border:none; font-size:16px; cursor:pointer; display:flex;
+    align-items:center; justify-content:center;
+  }
+  .detail-body { padding:12px 16px; }
+  .detail-row {
+    display:flex; justify-content:space-between; padding:10px 0;
+    border-bottom:1px solid var(--card-border); font-size:12px;
+  }
+  .detail-row:last-child { border-bottom:none; }
+  .detail-label { color:var(--text-sub); font-size:10px; font-weight:600; }
+  .detail-value { font-weight:700; text-align:right; color:var(--text); }
+  .detail-value a { color:#00607a; text-decoration:none; }
+  .detail-section-title {
+    font-size:13px; font-weight:800; padding:10px 0 4px;
+    color:#00607a; border-bottom:2px solid #00607a;
+  }
+
+  /* SOP tags */
+  .sop-tag {
+    display:inline-block; padding:4px 10px; border-radius:20px; font-size:10px;
+    font-weight:600; cursor:pointer; border:1px solid var(--card-border);
+    background:var(--check-bg); color:var(--text); transition:all 0.2s;
+  }
+  .sop-tag.active { background:#00607a; color:#fff; border-color:#00607a; }
+  .sop-item {
+    margin:4px 8px; padding:10px 12px; border-radius:10px;
+    background:var(--card-bg); border:1px solid var(--card-border);
+    animation:fadeUp 0.3s ease both; cursor:pointer;
+  }
+  .sop-item:active { transform:scale(0.98); }
+  .sop-level { font-size:10px; font-weight:700; padding:2px 8px; border-radius:12px; display:inline-block; margin-bottom:4px; }
+  .sop-level.reward { background:#e8f5e9; color:#2e7d32; }
+  .sop-level.warn { background:#fff3e0; color:#e65100; }
+  .sop-level.minor { background:#fce4ec; color:#c62828; }
+  .sop-level.major { background:#ffcdd2; color:#b71c1c; }
+  .sop-level.fire { background:#b71c1c; color:#fff; }
+  .sop-clause { font-size:11px; font-weight:800; color:#00607a; }
+  .sop-vi { font-size:12px; margin:4px 0 2px; color:var(--text); line-height:1.4; }
+  .sop-cn { font-size:11px; color:var(--text-sub); line-height:1.4; }
+
+  /* SOP Detail Modal */
+  .sop-detail-card {
+    background:var(--card-bg); backdrop-filter:blur(30px); -webkit-backdrop-filter:blur(30px);
+    border-radius:20px; width:100%; max-width:500px; max-height:85vh; overflow-y:auto;
+    animation:sopPopIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    position:relative; overflow:hidden;
+    border:2px solid transparent;
+    background-clip:padding-box;
+  }
+  .sop-detail-card::before {
+    content:''; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px;
+    background:linear-gradient(135deg,#00607a,#a0c800,#f7971e,#CAE5E8,#ECECEC);
+    background-size:400% 400%; border-radius:22px; z-index:-1;
+    animation:borderGlow 3s ease-in-out infinite;
+  }
+  @keyframes sopPopIn {
+    0%{transform:scale(0.5) rotate(-3deg);opacity:0}
+    60%{transform:scale(1.03) rotate(0.5deg);opacity:1}
+    100%{transform:scale(1) rotate(0deg);opacity:1}
+  }
+  @keyframes borderGlow {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  .sop-glow {
+    position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+    background:radial-gradient(circle,rgba(255,255,255) 0%,transparent 60%);
+    animation:glowRotate 6s linear infinite; pointer-events:none;
+  }
+  @keyframes glowRotate { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .sop-detail-header {
+    padding:20px; text-align:center;
+    background:linear-gradient(135deg,#00607a,#003d4d);
+    color:#fff; position:relative; overflow:hidden;
+  }
+  .sop-detail-header::after {
+    content:''; position:absolute; top:0; left:-100%; width:200%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(0,96,122,0.08),transparent);
+    animation:headerShine 3s ease-in-out infinite;
+  }
+  @keyframes headerShine { 0%{left:-100%} 100%{left:100%} }
+  .sop-detail-header h3 { font-size:20px; margin-bottom:4px; position:relative; }
+  .sop-detail-header p { font-size:12px; opacity:0.8; position:relative; }
+  .sop-detail-body {
+    padding:20px; animation:contentFadeIn 0.6s ease 0.2s both;
+  }
+  @keyframes contentFadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  .sop-copy-btn {
+    width:100%; padding:14px; border:none; border-radius:12px;
+    font-size:14px; font-weight:700; cursor:pointer;
+    background:linear-gradient(135deg,#00607a,#00a8cc);
+    color:#fff; position:relative; overflow:hidden;
+    transition:all 0.3s; box-shadow:0 4px 15px rgba(0,96,122,0.3);
+  }
+  .sop-copy-btn:active { transform:scale(0.97); box-shadow:0 2px 8px rgba(0,96,122,0.4); }
+  .sop-copy-btn::after {
+    content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+    transition:left 0.5s;
+  }
+  .sop-copy-btn:active::after { left:100%; }
+
+  .hidden { display:none; }
+
+  /* ============ PRINT PAGES (hidden on screen) ============ */
+  .print-page {
+    display:none;
+    width:297mm; height:210mm;
+    background:#fff;
+    padding:2mm;
+    overflow:hidden;
+    font-family:'Times New Roman',Times,serif;
+  }
+  .print-page table {
+    width:100%; height:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+    color:#000;
+  }
+  .print-page td {
+    border:1px solid #000;
+    padding:1px 2px;
+    vertical-align:middle;
+    text-align:center;
+    word-wrap:break-word;
+    white-space:pre-wrap;
+    font-size:9.5px;
+    line-height:1.18;
+  }
+  .tl{text-align:left!important} .vt{vertical-align:top!important}
+
+  /* Sheet 1 columns */
+  #print1 col.cA{width:7%} #print1 col.cB{width:4.2%} #print1 col.cC{width:10.3%}
+  #print1 col.cD{width:10.8%} #print1 col.cE{width:10.8%} #print1 col.cF{width:11.5%}
+  #print1 col.cG{width:10.5%} #print1 col.cH{width:10.8%} #print1 col.cI{width:10.3%} #print1 col.cJ{width:13.8%}
+
+  /* Sheet 2 columns */
+  #print2 col.s2A{width:14%} #print2 col.s2B{width:11.5%} #print2 col.s2C{width:9.5%}
+  #print2 col.s2D{width:10.5%} #print2 col.s2E{width:13.5%} #print2 col.s2F{width:7.5%}
+  #print2 col.s2G{width:12%} #print2 col.s2H{width:21.5%}
+
+  .row-label{height:var(--row7-h)} .row-tick{height:var(--row8-h)}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<div class="app-header" style="position:relative;">
+  <div class="app-title" id="appTitle"></div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- ============ SIDE MENU ============ -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<div class="side-menu" id="sideMenu">
+  <div class="menu-item" onclick="showSheet(1);toggleMenu()"><span class="mi-icon purple">📋</span>Đơn thưởng phạt<br><small>奖惩建议表</small></div>
+  <div class="menu-item" onclick="showSheet(2);toggleMenu()"><span class="mi-icon blue">🔍</span>Điều tra án<br><small>案件调查表</small></div>
+  <div class="menu-item" onclick="showSheet(3);toggleMenu()"><span class="mi-icon teal">🧑‍💼</span>Danh sách chủ quản<br><small>主管名单</small></div>
+  <div class="menu-item" onclick="showSheet(4);toggleMenu()"><span class="mi-icon green">🧑‍🎓</span>Danh sách trợ lý<br><small>秘書助理名单</small></div>
+  <div class="menu-item" onclick="showSheet(5);toggleMenu()"><span class="mi-icon red">📖</span>Điều khoản thưởng phạt<br><small>奖惩条款查询</small></div>
+</div>
+
+<!-- ============ DETAIL MODAL ============ -->
+<div class="detail-modal" id="detailModal">
+  <div class="detail-card" style="position:relative;">
+    <button class="detail-close" onclick="closeModal()">✕</button>
+    <div class="detail-header" id="modalHeader"><h3></h3><p></p></div>
+    <div class="detail-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ============ SOP DETAIL MODAL ============ -->
+<div class="detail-modal" id="sopModal">
+  <div class="sop-detail-card" style="position:relative;">
+    <button class="detail-close" onclick="closeSopModal()" style="z-index:10;">✕</button>
+    <div class="sop-glow"></div>
+    <div class="sop-detail-header" id="sopModalHeader"><h3></h3><p></p></div>
+    <div class="sop-detail-body" id="sopModalBody"></div>
+    <div style="padding:0 16px 16px;">
+      <button onclick="copySopClause()" class="sop-copy-btn">📋 Sao chép điều khoản / 复制条款</button>
+      <div id="copyStatus" style="text-align:center;font-size:12px;color:#43a047;padding:6px;display:none;animation:fadeUp 0.3s ease;">✅ Đã sao chép thành công! / 已复制!</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MOBILE FORM — SHEET 1 ============ -->
+<div class="mobile-form" id="form1">
+
+  <div class="form-section">
+    <div class="section-title"><span class="icon purple">👤</span>Thông tin nhân viên / 员工信息</div>
+    <div class="form-row">
+      <div class="form-field">
+        <div class="field-label">Bộ phận / 部门</div>
+        <input class="field-input" id="f1_dept" value="" placeholder="Nhập bộ phận / 输入部门" oninput="lookupDept(this.value, 'lookup1')">
+      </div>
+      <div class="form-field">
+        <div class="field-label">Chức vị / 职位</div>
+        <input class="field-input" id="f1_pos" value="NHÂN VIÊN">
+      </div>
+    </div>
+    <div class="dept-lookup" id="lookup1"></div>
+    <div class="form-row">
+      <div class="form-field">
+        <div class="field-label">Họ và tên / 姓名</div>
+        <input class="field-input" id="f1_name" value="" placeholder="Nhập họ và tên / 输入姓名">
+      </div>
+      <div class="form-field">
+        <div class="field-label">Mã nhân viên / 工号</div>
+        <input class="field-input" id="f1_id" value="" placeholder="Nhập mã nhân viên / 输入工号">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section-title"><span class="icon blue">📝</span>Lí do thưởng phạt / 提报案由</div>
+    <div class="form-row">
+      <div class="form-field full">
+        <textarea class="field-input" id="f1_reason" placeholder="Nhập lí do thưởng phạt / 输入提报案由..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section-title"><span class="icon green">📊</span>Đánh giá tác động / 影响评估</div>
+    <div class="form-row">
+      <div class="form-field full">
+        <textarea class="field-input small" id="f1_impact">B. Xử lý 处理 :
+1. Yêu cầu nhân viên ghi lại tường trình sự việc 要求员工记录事件报告。
+2. Tiến hành xử lý kỷ luật đối với nhân viên vi phạm 对违规员工进行纪律处分。
+3. Thông báo cho các bộ phận liên quan nắm rõ chi tiết về sự việc 将此事件的详细情况通知相关部门。</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section-title"><span class="icon red">⚖️</span>Đề xuất thưởng phạt / 建议奖惩</div>
+    <div style="padding:6px 12px;font-size:11px;color:var(--text-sub);">Thưởng / 奖:</div>
+    <div class="check-grid" id="rewardGrid">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Khen miệng</div><div class="cn">口头表扬</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">VB 1 lần</div><div class="cn">书面嘉奖一次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">VB 2 lần</div><div class="cn">书面嘉奖二次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Công nhỏ 1</div><div class="cn">小功一次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Công nhỏ 2</div><div class="cn">小功两次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Đại công 1</div><div class="cn">大功一次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Đại công 2</div><div class="cn">大功两次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">GT tập thể</div><div class="cn">集体专案议奖</div></div>
+    </div>
+    <div style="padding:6px 12px;font-size:11px;color:var(--text-sub);">Phạt / 惩:</div>
+    <div class="check-grid" id="punishGrid">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Cảnh cáo miệng</div><div class="cn">口头警告</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">CC VB 1 lần</div><div class="cn">书面警告一次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">CC VB 2 lần</div><div class="cn">书面警告两次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Lỗi nhỏ 1</div><div class="cn">小过一次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Lỗi nhỏ 2</div><div class="cn">小过两次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Lỗi lớn 1</div><div class="cn">大错一次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Lỗi nặng 2</div><div class="cn">大过两次</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="vi">Sa thải</div><div class="cn">违纪辞退</div></div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section-title"><span class="icon orange">✍️</span>Chữ ký / 签名</div>
+    <div class="form-row">
+      <div class="form-field full">
+        <div class="field-label">Người đề xuất / 提报人</div>
+        <textarea class="field-input" id="f1_proposer" style="min-height:50px;" placeholder="Nhập mã NV - Họ tên / 输入工号-姓名"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:12px;"><button onclick="printSheet()" style="width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#fa709a,#fee140);color:#fff;box-shadow:0 4px 15px rgba(250,112,154,0.4);">🖨️ In đơn thưởng phạt / 打印奖惩建议表</button></div>
+</div>
+
+<!-- ============ MOBILE FORM — SHEET 2 ============ -->
+<div class="mobile-form hidden" id="form2">
+  <div class="form-section">
+    <div class="section-title"><span class="icon purple">👤</span>Thông tin nhân viên / 员工信息</div>
+    <div class="form-row">
+      <div class="form-field"><div class="field-label">Họ tên / 姓名</div><input class="field-input" id="f2_name" value="" placeholder="Nhập họ và tên / 输入姓名"></div>
+      <div class="form-field"><div class="field-label">Mã NV / 工号</div><input class="field-input" id="f2_id" value="" placeholder="Nhập mã NV / 输入工号"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-field"><div class="field-label">Bộ phận / 部分</div><input class="field-input" id="f2_dept" value="" placeholder="Nhập bộ phận / 输入部门" oninput="lookupDept(this.value, 'lookup2')"></div>
+      <div class="form-field"><div class="field-label">Chức vụ / 职务</div><input class="field-input" id="f2_pos" value="NHÂN VIÊN"></div>
+    </div>
+    <div class="dept-lookup" id="lookup2"></div>
+    <div class="form-row">
+      <div class="form-field"><div class="field-label">Ký túc xá / 宿舍</div><input class="field-input" id="f2_dorm" value="KHÔNG"></div>
+      <div class="form-field"><div class="field-label">Loại vụ án / 案件类别</div><input class="field-input" id="f2_case" value="" placeholder="Nhập loại vụ án / 输入案件类别"></div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section-title"><span class="icon blue">📝</span>Quá trình / 过程</div>
+    <div class="form-row">
+      <div class="form-field full">
+        <textarea class="field-input" id="f2_process" placeholder="Nhập quá trình sự việc / 输入过程..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section-title"><span class="icon green">📊</span>Xử lý / 处理</div>
+    <div class="form-row">
+      <div class="form-field full">
+        <div class="field-label">Hình thức / 处理方法</div>
+        <input class="field-input" id="f2_method" value="Sa thải do vi phạm kỉ luật 违纪辞退">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-field full">
+        <textarea class="field-input small" id="f2_handling">B. Xử lý 处理 :
+1. Yêu cầu nhân viên ghi lại tường trình sự việc 要求员工记录事件报告。
+2. Tiến hành xử lý kỷ luật đối với nhân viên vi phạm 对违规员工进行纪律处分。
+3. Thông báo cho các bộ phận liên quan nắm rõ chi tiết về sự việc 将此事件的详细情况通知相关部门。</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:12px;"><button onclick="printSheet()" style="width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#4facfe,#00f2fe);color:#fff;box-shadow:0 4px 15px rgba(79,172,254,0.4);">🖨️ In điều tra án / 打印案件调查表</button></div>
+</div>
+
+<!-- ============ MOBILE VIEW — DS CHỦ QUẢN ============ -->
+<div class="mobile-form hidden" id="form3">
+  <div class="form-section">
+    <div class="section-title"><span class="icon teal">👔</span>Danh sách chủ quản / 主管名单</div>
+    <div class="form-row">
+      <div class="form-field full">
+        <input class="field-input" id="searchMgr" placeholder="🔍 Tìm mã BP hoặc tên / 搜索部门代码或姓名..." oninput="filterList('mgr')">
+      </div>
+    </div>
+    <div id="mgrList" style="max-height:65vh;overflow-y:auto;"></div>
+  </div>
+</div>
+
+<!-- ============ MOBILE VIEW — DS TRỢ LÝ ============ -->
+<div class="mobile-form hidden" id="form4">
+  <div class="form-section">
+    <div class="section-title"><span class="icon green">📎</span>Danh sách trợ lý / 秘書助理名单</div>
+    <div class="form-row">
+      <div class="form-field full">
+        <input class="field-input" id="searchAsst" placeholder="🔍 Tìm mã BP hoặc tên / 搜索部门代码或姓名..." oninput="filterList('asst')">
+      </div>
+    </div>
+    <div id="asstList" style="max-height:65vh;overflow-y:auto;"></div>
+  </div>
+</div>
+
+<!-- ============ MOBILE VIEW — ĐIỀU KHOẢN THƯỞNG PHẠT ============ -->
+<div class="mobile-form hidden" id="form5">
+  <div class="form-section">
+    <div class="section-title"><span class="icon red">📖</span>Điều khoản thưởng phạt / 奖惩条款 <span id="sopCount" style="font-weight:400;font-size:10px;color:var(--text-sub);"></span></div>
+    <div class="form-row">
+      <div class="form-field full">
+        <input class="field-input" id="searchSop" placeholder="🔍 Tìm từ khóa, điều khoản / 搜索关键词、条款..." oninput="filterSop()">
+      </div>
+    </div>
+    <div style="padding:4px 12px;display:flex;gap:4px;flex-wrap:wrap;" id="sopFilters">
+      <span class="sop-tag active" onclick="filterSopLevel(this,'')">Tất cả</span>
+      <span class="sop-tag" onclick="filterSopLevel(this,'Khen')">🏆 Khen thưởng</span>
+      <span class="sop-tag" onclick="filterSopLevel(this,'Cảnh cáo')">⚠️ Cảnh cáo</span>
+      <span class="sop-tag" onclick="filterSopLevel(this,'Lỗi nhỏ')">🔸 Lỗi nhỏ</span>
+      <span class="sop-tag" onclick="filterSopLevel(this,'Lỗi lớn')">🔴 Lỗi lớn</span>
+      <span class="sop-tag" onclick="filterSopLevel(this,'Sa thải')">❌ Sa thải</span>
+    </div>
+    <div id="sopList" style="max-height:60vh;overflow-y:auto;padding:4px 0;"></div>
+  </div>
+</div>
+
+<!-- ============ PRINT PAGE 1 (hidden, only for printing) ============ -->
+<div class="print-page" id="print1">
+<table>
+<colgroup><col class="cA"><col class="cB"><col class="cC"><col class="cD"><col class="cE"><col class="cF"><col class="cG"><col class="cH"><col class="cI"><col class="cJ"></colgroup>
+<tbody>
+  <tr style="height:0.9%;">
+    <td colspan="3" style="padding:0;overflow:hidden;text-align:center;position:relative;height:0.9%;">
+      <div style="position:absolute;left:1px;top:0;width:3px;height:35%;background:#00607a;-webkit-print-color-adjust:exact;print-color-adjust:exact;"></div>
+      <div style="position:absolute;left:1px;top:38%;width:5px;height:62%;background:#a0c800;-webkit-print-color-adjust:exact;print-color-adjust:exact;"></div>
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">
+        <!-- 🔧 CHỈNH CỠ CHỮ WISTRON Ở ĐÂY — thay đổi font-size thoải mái, ô không bị phình -->
+        <div style="font-size:42px;font-weight:900;font-family:'Arial Black',Arial,sans-serif;color:#00607a;line-height:0.8;white-space:nowrap;">w<span style="color:#a0c800;">i</span>stron</div>
+        <div style="font-size:9px;font-family:Arial,sans-serif;color:#333;line-height:1;">wistron corporation</div>
+      </div>
+    </td>
+    <td colspan="7" style="padding:0;overflow:hidden;position:relative;height:0.9%;background-color:#D9D9D9!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">
+        <!-- 🔧 CHỈNH CỠ CHỮ TIÊU ĐỀ Ở ĐÂY -->
+        <div style="font-size:20px;font-weight:bold;white-space:nowrap;line-height:0.9;">Biểu đề xuất thưởng phạt</div>
+        <div style="font-size:20px;font-weight:bold;white-space:nowrap;line-height:0.9;">奖惩建议表</div>
+      </div>
+    </td>
+  </tr>
+  <tr style="height:var(--row2-h);">
+    <td rowspan="2" style="font-size:9px;font-weight:bold;line-height:1.25;">Người được
+thưởng/phạt
+被提报人</td>
+    <td colspan="2" style="font-size:10.5px;font-weight:bold;">Bộ phận
+部 门</td>
+    <td colspan="2" style="font-size:10.5px;font-weight:bold;">Chức vị
+职 位</td>
+    <td colspan="2" style="font-size:10.5px;font-weight:bold;">Họ và tên
+姓 名</td>
+    <td colspan="3" style="font-size:10.5px;font-weight:bold;">Mã nhân viên
+工 号</td>
+  </tr>
+  <tr style="height:var(--row3-h);">
+    <td colspan="2" style="font-size:13px;font-weight:bold;" id="p1_dept">KV2W20</td>
+    <td colspan="2" style="font-size:13px;font-weight:bold;" id="p1_pos">NHÂN VIÊN</td>
+    <td colspan="2" style="font-size:13px;font-weight:bold;" id="p1_name">NGUYỄN QUỐC TIẾN</td>
+    <td colspan="3" style="font-size:13px;font-weight:bold;" id="p1_id">V23090140</td>
+  </tr>
+  <tr style="height:var(--row4-h);">
+    <td style="font-size:8px;font-weight:bold;line-height:1.2;">Lí do thưởng phạt
+提报案由</td>
+    <td colspan="9" class="tl vt" style="font-size:15px;padding:3px 4px;line-height:1.3;" id="p1_reason"></td>
+  </tr>
+  <tr style="height:var(--row5-h);">
+    <td style="font-size:7.5px;font-weight:bold;line-height:1.2;">Đánh giá tác động
+影响评估</td>
+    <td colspan="9" class="tl vt" style="font-size:10px;padding:2px 4px;line-height:1.3;" id="p1_impact"></td>
+  </tr>
+  <tr style="height:var(--row6-h);">
+    <td rowspan="5" style="font-size:7.5px;font-weight:bold;line-height:1.2;">Đề xuất thưởng
+phạt
+建议奖惩</td>
+    <td colspan="9" style="font-size:9px;line-height:1.25;">Xử lý theo điều khoản của "Các biện pháp quản lý về thưởng phạt cho nhân viên"
+依《员工奖惩管理办法》第 款，第　条规定办理</td>
+  </tr>
+  <tr class="row-label">
+    <td rowspan="2" style="font-size:8.5px;font-weight:bold;">Thưởng
+奖</td>
+    <td style="font-size:7.5px;font-weight:bold;">Khen thưởng bằng miệng
+口头表扬</td>
+    <td style="font-size:7.5px;font-weight:bold;">Khen thưởng
+bằng văn bản 1 lần
+书面嘉奖一次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Khen thưởng
+bằng văn bản 2 lần
+书面嘉奖二次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Công nhỏ 1 lần
+小功一次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Công nhỏ 2 lần
+小功两次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Đại công 1 lần
+大功一次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Đại công 2 lần
+大功两次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Giải thưởng
+đề xuất dự án tập thể
+集体专案议奖</td>
+  </tr>
+  <tr class="row-tick"><td id="pt0"></td><td id="pt1"></td><td id="pt2"></td><td id="pt3"></td><td id="pt4"></td><td id="pt5"></td><td id="pt6"></td><td id="pt7"></td></tr>
+  <tr class="row-label">
+    <td rowspan="2" style="font-size:8.5px;font-weight:bold;">Phạt
+惩</td>
+    <td style="font-size:7.5px;font-weight:bold;">Cảnh cáo bằng miệng
+口头警告</td>
+    <td style="font-size:7.5px;font-weight:bold;">Cảnh cáo
+bằng văn bản 1 lần
+书面警告一次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Cảnh cáo
+bằng văn bản 2 lần
+书面警告两次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Lỗi nhỏ 1 lần
+小过一次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Lỗi nhỏ 2 lần
+小过两次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Lỗi lớn 1 lần
+大错一次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Lỗi nặng 2 lần
+大过两次</td>
+    <td style="font-size:7.5px;font-weight:bold;">Sa thải
+do vi phạm kỉ luật
+违纪辞退</td>
+  </tr>
+  <tr class="row-tick"><td id="pp0"></td><td id="pp1"></td><td id="pp2"></td><td id="pp3"></td><td id="pp4"></td><td id="pp5"></td><td id="pp6"></td><td id="pp7" style="font-size:22px;font-weight:bold;"></td></tr>
+  <tr style="height:var(--row11-h);">
+    <td colspan="3" style="font-size:9px;font-weight:bold;">Chủ quản kí tên
+主管签认</td>
+    <td colspan="3" style="font-size:9px;font-weight:bold;">Người đương sự kí tên
+当事人签名</td>
+    <td colspan="4" style="font-size:9px;font-weight:bold;">Người đề xuất
+提报人</td>
+  </tr>
+  <tr style="height:var(--row12-h);">
+    <td colspan="3"></td>
+    <td colspan="3"></td>
+    <td colspan="4" style="font-size:12px;font-weight:bold;line-height:1.25;" id="p1_proposer"></td>
+  </tr>
+  <tr style="height:var(--row13-h);">
+    <td style="font-size:6.5px;font-weight:bold;line-height:1.1;">Ghi chú
+备注</td>
+    <td colspan="9" style="font-size:6px;line-height:1.15;padding:1px 2px;">本表由提报人填写﹐当事人签名确认，送当事人上一级主管签认，并在奖惩系统中提报时作为附件上传。
+Biểu mẫu này được điền bởi người đưa ra, có chữ ký của bên liên quan, được gửi đến người giám sát cấp trên của bên đó để phê duyệt và tải lên dưới dạng tệp đính kèm khi báo cáo trong hệ thống khen thưởng và trừng phạt.</td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<!-- ============ PRINT PAGE 2 ============ -->
+<div class="print-page print-hide" id="print2">
+<table>
+<colgroup><col class="s2A"><col class="s2B"><col class="s2C"><col class="s2D"><col class="s2E"><col class="s2F"><col class="s2G"><col class="s2H"></colgroup>
+<tbody>
+  <tr style="height:var(--s2row1-h);"><td colspan="8" style="font-size:18px;font-weight:bold;border:2px solid #000;line-height:1.35;background-color:#D9D9D9!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;">员工案件调查处理登记表
+Bảng đăng ký xử lý điều tra vụ án của nhân viên</td></tr>
+  <tr style="height:var(--s2row2-h);">
+    <td style="font-size:12px;font-weight:bold;border-left:2px solid #000;">姓名
+Họ tên</td>
+    <td colspan="2" style="font-size:12px;font-weight:bold;" id="p2_name"></td>
+    <td style="font-size:12px;font-weight:bold;" id="p2_id"></td>
+    <td style="font-size:12px;font-weight:bold;">部分
+bộ phận</td>
+    <td colspan="3" style="font-size:12px;font-weight:bold;border-right:2px solid #000;" id="p2_dept"></td>
+  </tr>
+  <tr style="height:var(--s2row3-h);">
+    <td style="font-size:12px;font-weight:bold;border-left:2px solid #000;">职务
+Chức vụ</td>
+    <td style="font-size:12px;font-weight:bold;" id="p2_pos"></td>
+    <td style="font-size:12px;font-weight:bold;">宿舍
+KÝ TÚC XÁ</td>
+    <td style="font-size:12px;font-weight:bold;" id="p2_dorm"></td>
+    <td style="font-size:12px;font-weight:bold;">当事人来源
+Nguồn đương sự</td>
+    <td colspan="3" style="font-size:12px;font-weight:bold;border-right:2px solid #000;">违规行为
+Hành vi vi phạm</td>
+  </tr>
+  <tr style="height:var(--s2row4-h);">
+    <td style="font-size:12px;font-weight:bold;border-left:2px solid #000;">身份证
+Số chứng minh thư</td>
+    <td colspan="2" style="font-size:12px;font-weight:bold;"></td>
+    <td style="font-size:12px;font-weight:bold;">案件标号
+Số vụ án</td>
+    <td style="font-size:12px;font-weight:bold;"></td>
+    <td style="font-size:12px;font-weight:bold;">案件类别
+Loại vụ án</td>
+    <td colspan="2" style="font-size:12px;font-weight:bold;" id="p2_case"></td>
+  </tr>
+  <tr style="height:var(--s2row5-h);"><td colspan="8" class="tl" style="font-size:13px;font-weight:bold;border-left:2px solid #000;border-right:2px solid #000;border-bottom:none;">Quá Trình 过程</td></tr>
+  <tr style="height:var(--s2row6-h);"><td colspan="8" class="tl vt" style="font-size:15px;font-weight:bold;border-left:2px solid #000;border-right:2px solid #000;border-top:none;padding:5px;line-height:1.35;" id="p2_process"></td></tr>
+  <tr style="height:var(--s2row7-h);"><td colspan="8" class="tl" style="font-size:15px;font-weight:bold;border-left:2px solid #000;border-right:2px solid #000;padding:3px;" id="p2_method"></td></tr>
+  <tr style="height:var(--s2row8-h);"><td colspan="8" class="tl vt" style="font-size:15px;font-weight:bold;padding:4px;line-height:1.35;" id="p2_handling"></td></tr>
+  <tr style="height:var(--s2row9-h);">
+    <td colspan="2" class="vt" style="font-size:15px;font-weight:bold;border-left:2px solid #000;border-bottom:2px solid #000;padding:8px 4px 4px 4px;">
+当事人签：
+Đương sự ký tên</td>
+    <td colspan="4" class="vt" style="font-size:15px;font-weight:bold;border-bottom:2px solid #000;padding:8px 4px 4px 4px;">
+当事部门主管：
+Chủ quản của đương sự</td>
+    <td colspan="2" class="vt" style="font-size:15px;font-weight:bold;border-right:2px solid #000;border-bottom:2px solid #000;padding:8px 4px 4px 4px;">
+值班警卫：
+Bảo vệ trực ban</td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<script>
+const DEPT_DATA = [{"codes":["1K0000","KV0000"],"dept":"CPBG製造管理（總監） / 兼越南廠區（總經理）","mgr_id":"9705207","mgr":"林書銘","mgr_eng":"SM Lin","mgr_tel":"0869614870","mgr_ext":"1001","asst_id":"Z20070158","asst":"Echo J Wu","asst_tel":"0388058785","asst_ext":"1011","dept_vi":"Quản lý sản xuất CPBG (Tổng giám đốc) / kiêm Khu nhà máy VN (Tổng giám đốc)","mgr_vi":"Lâm Thư Minh","mgr_py":"Lín Shūmíng"},{"codes":["KV0000"],"dept":"越南廠區(副总经理）","mgr_id":"9311110","mgr":"林志宏（副总经理）","mgr_eng":"Jason CH Lin","mgr_tel":"0337993422","mgr_ext":"1100","asst_id":"V21060102","asst":"Xavia Ninh","asst_tel":"0396977099","asst_ext":"1012","dept_vi":"Khu nhà máy VN (Phó TGĐ)","mgr_vi":"Lâm Chí Hoành （Phó TGĐ）","mgr_py":"Lín Zhìhóng"},{"codes":["KV1000"],"dept":"越南廠區一廠","mgr_id":"9311110","mgr":"林志宏（副总经理兼）","mgr_eng":"Jason CH Lin","mgr_tel":"0337993422","mgr_ext":"1100","asst_id":"V21060102","asst":"Xavia Ninh","asst_tel":"0396977099","asst_ext":"1012","dept_vi":"Nhà máy 1 Việt Nam","mgr_vi":"Lâm Chí Hoành （Phó TGĐ kiêm）","mgr_py":"Lín Zhìhóng"},{"codes":["KV1000"],"dept":"越南廠區一廠","mgr_id":"11204002","mgr":"林俊呈（副廠長）","mgr_eng":"Jesse Lin","mgr_tel":"0378516851","mgr_ext":"1300","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Nhà máy 1 Việt Nam","mgr_vi":"Lâm Tuấn Trình （副Giám đốc NM）","mgr_py":"Lín Jùnchéng"},{"codes":["KV1000"],"dept":"越南廠區一廠","mgr_id":"10309105","mgr":"陳思璁（副廠長）","mgr_eng":"James ST Chen","mgr_tel":"0865086840","mgr_ext":"1500","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Nhà máy 1 Việt Nam","mgr_vi":"Trần Tư Thông （副Giám đốc NM）","mgr_py":"Chén Sīcōng"},{"codes":["KV1100"],"dept":"產銷管理部","mgr_id":"D20080017","mgr":"葉權安","mgr_eng":"Andy Ye","mgr_tel":"0857133129","mgr_ext":"1101","asst_id":"V21050065","asst":"Yuri Pham","asst_tel":"0964552158","asst_ext":"1105","dept_vi":"Bộ phận Quản lý sản xuất & kinh doanh","mgr_vi":"Diệp Quyền An","mgr_py":"Yè Quánān"},{"codes":["KV1200"],"dept":"電子採購部","mgr_id":"11008106","mgr":"李玉真","mgr_eng":"Lily YC Lee","mgr_tel":"0927792543","mgr_ext":"1201","asst_id":"V23040003\nV22070163","asst":"Eric Hoang\n Maya Phan","asst_tel":"0868353350","asst_ext":"1220","dept_vi":"Bộ phận Mua hàng điện tử","mgr_vi":"Lý Ngọc Chân","mgr_py":"Lǐ Yùzhēn"},{"codes":["KV1500"],"dept":"機構工程部","mgr_id":"10506033","mgr":"林士傑","mgr_eng":"Jack SC Lin","mgr_tel":"0857380125","mgr_ext":"1501","asst_id":"V22100092","asst":"Nini Tran","asst_tel":"0349801622","asst_ext":"1303","dept_vi":"Bộ phận Kỹ thuật cơ khí","mgr_vi":"Lâm Sĩ Kiệt","mgr_py":"Lín Shìjié"},{"codes":["KV1600"],"dept":"PCBA生產部","mgr_id":"D05109500","mgr":"王智勇","mgr_eng":"Milan Wang","mgr_tel":"0369377508","mgr_ext":"1601","asst_id":"V21030017","asst":"Lora Nguyen","asst_tel":"0399381591","asst_ext":"1603","dept_vi":"Bộ phận Sản xuất PCBA","mgr_vi":"Vương Trí Dũng","mgr_py":"Wáng Zhìyǒng"},{"codes":["KV1700"],"dept":"成品生產部","mgr_id":"D1111P540","mgr":"彭剛","mgr_eng":"Gavin Peng","mgr_tel":"0859831125","mgr_ext":"1701","asst_id":"V21050021","asst":"Lana Dang","asst_tel":"0982553926","asst_ext":"1703","dept_vi":"Bộ phận Sản xuất thành phẩm","mgr_vi":"Bành Cương","mgr_py":"Péng Gāng"},{"codes":["KV1800"],"dept":"品質保證部","mgr_id":"10608106","mgr":"陳加泓","mgr_eng":"Jacob Chen","mgr_tel":"0866001895","mgr_ext":"1807","asst_id":"V23080125","asst":"Helen Nguyen","asst_tel":"0855718119","asst_ext":"NA","dept_vi":"Bộ phận Đảm bảo chất lượng","mgr_vi":"Trần Gia Hoành","mgr_py":"Chén Jiāhóng"},{"codes":["KV1900"],"dept":"供應商品質管理部","mgr_id":"9607108","mgr":"魏文泰","mgr_eng":"Rex Wei","mgr_tel":"0388322731","mgr_ext":"1906","asst_id":"V23060735","asst":"Katniss Vu","asst_tel":"0816516899","asst_ext":"NA","dept_vi":"Bộ phận Quản lý chất lượng NCC","mgr_vi":"Ngụy Văn Thái","mgr_py":"Wèi Wéntài"},{"codes":["KV1A00"],"dept":"PCBA工程部","mgr_id":"D07021210","mgr":"吴春香","mgr_eng":"Ella C Wu","mgr_tel":"0818765835","mgr_ext":"NA","asst_id":"V21060006","asst":"Aubrey Nguyen","asst_tel":"0373804591","asst_ext":"1603","dept_vi":"Bộ phận Kỹ thuật PCBA","mgr_vi":"Ngô Xuân Hương","mgr_py":"Wú Chūnxiāng"},{"codes":["KV1C00"],"dept":"客戶導向部","mgr_id":"10305115","mgr":"賴岳廷","mgr_eng":"Phil Lai","mgr_tel":"0866726908","mgr_ext":"1801","asst_id":"V24070041","asst":"Chloe Truong","asst_tel":"0915171588","asst_ext":"NA","dept_vi":"Bộ phận Định hướng khách hàng","mgr_vi":"Lại Nhạc Đình","mgr_py":"Lài Yuètíng"},{"codes":["KV1E00"],"dept":"工業工程部","mgr_id":"D14020882","mgr":"温良","mgr_eng":"Winston Wen","mgr_tel":"0961049170","mgr_ext":"NA","asst_id":"V25063766","asst":"Luna Vu","asst_tel":"0329604718","asst_ext":"1401","dept_vi":"Bộ phận Kỹ thuật công nghiệp","mgr_vi":"Ôn Lương","mgr_py":"Wēn Liáng"},{"codes":["KV1P00"],"dept":"機構採購部","mgr_id":"D13120214","mgr":"曾杰龍","mgr_eng":"Vapth Zeng","mgr_tel":"0912908649","mgr_ext":"1280","asst_id":"V23030190","asst":"Krixi Nguyen","asst_tel":"0564321054","asst_ext":"1209","dept_vi":"Bộ phận Mua hàng cơ khí","mgr_vi":"Tăng Kiệt Long","mgr_py":"Zēng Jiélóng"},{"codes":["KV1R00"],"dept":"PCBA維修部","mgr_id":"D04080620","mgr":"沈志明","mgr_eng":"ZM Shen","mgr_tel":"0911945124","mgr_ext":"1688","asst_id":"V23070378","asst":"Ivy M Le","asst_tel":"0913226297","asst_ext":"1688","dept_vi":"Bộ phận Sửa chữa PCBA","mgr_vi":"Thẩm Chí Minh","mgr_py":"Shěn Zhìmíng"},{"codes":["KV1S00"],"dept":"FA維修部","mgr_id":"D14071330","mgr":"張洪","mgr_eng":"CP Zhang","mgr_tel":"0853052638","mgr_ext":"1711","asst_id":"V23070379","asst":"Jiang Le","asst_tel":"0859665600","asst_ext":"1711","dept_vi":"Bộ phận Sửa chữa FA","mgr_vi":"Trương Hồng","mgr_py":"Zhāng Hóng"},{"codes":["KV1T00"],"dept":"測試工程部","mgr_id":"D0805G260","mgr":"田朋義","mgr_eng":"Pengyi Tian","mgr_tel":"0814126845","mgr_ext":"1312","asst_id":"V25040055","asst":"Amy Le","asst_tel":"0349939088","asst_ext":"1312","dept_vi":"Bộ phận Kỹ thuật kiểm tra","mgr_vi":"Điền Bằng Nghĩa","mgr_py":"Tián Péngyì"},{"codes":["KV1W00"],"dept":"物流管理部","mgr_id":"D05085240","mgr":"劉均","mgr_eng":"Abe Liu","mgr_tel":"0857105238","mgr_ext":"1721","asst_id":"V23060820","asst":"Lorna Bui","asst_tel":"0326558329","asst_ext":"1722","dept_vi":"Bộ phận Quản lý vật tư","mgr_vi":"Lưu Quân","mgr_py":"Liú Jūn"},{"codes":["KV1X00"],"dept":"產品工程部","mgr_id":"D14041683","mgr":"王波","mgr_eng":"Robot Wang","mgr_tel":"0392647627","mgr_ext":"NA","asst_id":"V22100092","asst":"Nini Tran","asst_tel":"0349801622","asst_ext":"1303","dept_vi":"Bộ phận Kỹ thuật sản phẩm","mgr_vi":"Vương Ba","mgr_py":"Wáng Bō"},{"codes":["KV1K00"],"dept":"專案管理室","mgr_id":"D0805G270","mgr":"張俊良","mgr_eng":"Junliang Zhang","mgr_tel":"0389948550","mgr_ext":"1410","asst_id":"V25072815","asst":"storm nguyen","asst_tel":"0376034005","asst_ext":"","dept_vi":"Phòng Quản lý dự án","mgr_vi":"Trương Tuấn Lương","mgr_py":"Zhāng Jùnliáng"},{"codes":["KV1G00"],"dept":"客戶導向二部","mgr_id":"200410005","mgr":"劉佳","mgr_eng":"Safei Liu","mgr_tel":"","mgr_ext":"","asst_id":"V25080011","asst":"Bea Le","asst_tel":"0833293234","asst_ext":"","dept_vi":"Bộ phận Định hướng KH 2","mgr_vi":"Lưu Giai","mgr_py":"Liú Jiā"},{"codes":["KV1N00"],"dept":"新產品導入部","mgr_id":"D12070023","mgr":"魏泽雷","mgr_eng":"Gary Wei","mgr_tel":"","mgr_ext":"NA","asst_id":"V22100092","asst":"Nini Tran","asst_tel":"0349801622","asst_ext":"1303","dept_vi":"Bộ phận Đưa SP mới vào SX","mgr_vi":"Ngụy Trạch Lôi","mgr_py":"Wèi Zélěi"},{"codes":["JMC800"],"dept":"越南自動化工程一部","mgr_id":"D17020010","mgr":"张天东","mgr_eng":"Winter Zhang","mgr_tel":"0979214845","mgr_ext":"6902","asst_id":"V23020124","asst":"Zina Ngo\nEddie Pham","asst_tel":"0365395856","asst_ext":"6902","dept_vi":"BP Kỹ thuật tự động hóa VN 1","mgr_vi":"Trương Thiên Đông","mgr_py":"Zhāng Tiāndōng"},{"codes":["KV2000"],"dept":"越南廠區二廠","mgr_id":"2008L0116","mgr":"邱明生（廠長）","mgr_eng":"Kaiven Chiou","mgr_tel":"‘0366182684","mgr_ext":"2500","asst_id":"V23050235","asst":"Ann T Nguyen","asst_tel":"0565838316","asst_ext":"2501","dept_vi":"Nhà máy 2 Việt Nam","mgr_vi":"Khâu Minh Sinh （Giám đốc NM）","mgr_py":"Qiū Míngshēng"},{"codes":["KV2000"],"dept":"越南廠區二廠","mgr_id":"10105065","mgr":"范茂林（技術處長）","mgr_eng":"Maolin Fan","mgr_tel":"‘0366065951","mgr_ext":"2100","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Nhà máy 2 Việt Nam","mgr_vi":"Phạm Mậu Lâm （Trưởng phòng KT）","mgr_py":"Fàn Màolín"},{"codes":["KV2000"],"dept":"越南廠區二廠","mgr_id":"9602119","mgr":"黃士峰（副廠長）","mgr_eng":"Terry SF Huang","mgr_tel":"’0387879202","mgr_ext":"2600","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Nhà máy 2 Việt Nam","mgr_vi":"Hoàng Sĩ Phong （副Giám đốc NM）","mgr_py":"Huáng Shìfēng"},{"codes":["KV2000"],"dept":"越南廠區二廠","mgr_id":"200810590","mgr":"向壯麗（副廠長）","mgr_eng":"Dick Xiang","mgr_tel":"‘0366221871","mgr_ext":"","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Nhà máy 2 Việt Nam","mgr_vi":"Hướng Tráng Lệ （副Giám đốc NM）","mgr_py":"Xiàng Zhuànglì"},{"codes":["KV2000"],"dept":"越南廠區二廠","mgr_id":"2008L0184","mgr":"張杰（副廠長）","mgr_eng":"Hill Chang","mgr_tel":"’0972966821","mgr_ext":"2700","asst_id":"V23070381","asst":"Maya Nguyen","asst_tel":"0963582723","asst_ext":"2104","dept_vi":"Nhà máy 2 Việt Nam","mgr_vi":"Trương Kiệt （副Giám đốc NM）","mgr_py":"Zhāng Jié"},{"codes":["KV2100"],"dept":"產銷管理部","mgr_id":"9707049","mgr":"莊金剛","mgr_eng":"Max Chuang","mgr_tel":"0388036706","mgr_ext":"2110","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Bộ phận Quản lý sản xuất & kinh doanh","mgr_vi":"Trang Kim Cương","mgr_py":"Zhuāng Jīngāng"},{"codes":["KV2200"],"dept":"電子採購管理部","mgr_id":"Z10091361","mgr":"黃淑珊","mgr_eng":"Susan SS Huang","mgr_tel":"15019917331","mgr_ext":"1221","asst_id":"V23110034","asst":"Emily Nguyen","asst_tel":"0963101417","asst_ext":"2108","dept_vi":"Bộ phận Quản lý mua hàng điện tử","mgr_vi":"Hoàng Thục San","mgr_py":"Huáng Shūshān"},{"codes":["KV2K00"],"dept":"機構採購管理部","mgr_id":"Z15093040","mgr":"肖聖元","mgr_eng":"Alen Xiao","mgr_tel":"0396086791","mgr_ext":"2130","asst_id":"V25020008","asst":"July Dinh","asst_tel":"0865392162","asst_ext":"2109","dept_vi":"Bộ phận Quản lý mua hàng cơ khí","mgr_vi":"Tiêu Thánh Nguyên","mgr_py":"Xiāo Shèngyuán"},{"codes":["KV2600"],"dept":"PCBA生產部","mgr_id":"2009030245","mgr":"張開(兼)","mgr_eng":"Kaikai Zhang","mgr_tel":"NA","mgr_ext":"","asst_id":"V23080246","asst":"Sun Nguyen","asst_tel":"0337009861","asst_ext":"2601","dept_vi":"Bộ phận Sản xuất PCBA","mgr_vi":"Trương Khai (kiêm)","mgr_py":"Zhāng Kāi"},{"codes":[],"dept":"","mgr_id":"Z16073159","mgr":"郭旭剛","mgr_eng":"Rock Guo","mgr_tel":"0378978214","mgr_ext":"2610","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"","mgr_vi":"Quách Húc Cương","mgr_py":"Guō Xùgāng"},{"codes":["KV2700"],"dept":"成品生產部","mgr_id":"Z13083009","mgr":"朱如錠","mgr_eng":"Devin Zhu","mgr_tel":"NA","mgr_ext":"2710","asst_id":"V23060601","asst":"Amy Dinh","asst_tel":"0354592089","asst_ext":"2701","dept_vi":"Bộ phận Sản xuất thành phẩm","mgr_vi":"Chu Như Đính","mgr_py":"Zhū Rúdìng"},{"codes":[],"dept":"","mgr_id":"200708722","mgr":"李釗全","mgr_eng":"Paul Z Li","mgr_tel":"NA","mgr_ext":"","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"","mgr_vi":"Lý Chiêu Toàn","mgr_py":"Lǐ Zhāoquán"},{"codes":["KV2800"],"dept":"品質保證部","mgr_id":"2008L0107","mgr":"李軍成","mgr_eng":"Jed Lee","mgr_tel":"NA","mgr_ext":"2810","asst_id":"V25022802","asst":"Jena Bui","asst_tel":"0383841044","asst_ext":"NA","dept_vi":"Bộ phận Đảm bảo chất lượng","mgr_vi":"Lý Quân Thành","mgr_py":"Lǐ Jūnchéng"},{"codes":["KV2900"],"dept":"供應商品質管理部","mgr_id":"9902029","mgr":"張忠祥","mgr_eng":"Johnson CS Chang","mgr_tel":"0983111702","mgr_ext":"2910","asst_id":"V24041004","asst":"Doanh  Nguyen","asst_tel":"0974323978","asst_ext":"NA","dept_vi":"Bộ phận Quản lý chất lượng NCC","mgr_vi":"Trương Trung Tường","mgr_py":"Zhāng Zhōngxiáng"},{"codes":["KV2A00"],"dept":"PCBA工程部","mgr_id":"2009030245","mgr":"張開","mgr_eng":"KaiKai Zhang","mgr_tel":"NA","mgr_ext":"2650","asst_id":"V25050135","asst":"Hannie Tran","asst_tel":"0916588675","asst_ext":"NA","dept_vi":"Bộ phận Kỹ thuật PCBA","mgr_vi":"Trương Khai","mgr_py":"Zhāng Kāi"},{"codes":["KV2B00"],"dept":"設備工程部","mgr_id":"2008L0640","mgr":"邵永","mgr_eng":"Ares Shao","mgr_tel":"0988956653","mgr_ext":"NA","asst_id":"V24120035","asst":"Yanna Luong","asst_tel":"0964061680","asst_ext":"NA","dept_vi":"Bộ phận Kỹ thuật thiết bị","mgr_vi":"Thiệu Vĩnh","mgr_py":"Shào Yǒng"},{"codes":["KV2C00"],"dept":"客戶導向部","mgr_id":"9809103","mgr":"陳英青","mgr_eng":"EC Chen","mgr_tel":"0817166835","mgr_ext":"2810","asst_id":"V23030257","asst":"Alice Bui","asst_tel":"0395094753","asst_ext":"2801","dept_vi":"Bộ phận Định hướng khách hàng","mgr_vi":"Trần Anh Thanh","mgr_py":"Chén Yīngqīng"},{"codes":["KV2D00"],"dept":"專案室","mgr_id":"10105065","mgr":"范茂林（兼）","mgr_eng":"Maolin Fan","mgr_tel":"0366065951","mgr_ext":"2100","asst_id":"V24060022","asst":"Annie Dang","asst_tel":"0352970582","asst_ext":"","dept_vi":"Phòng Dự án","mgr_vi":"Phạm Mậu Lâm （kiêm）","mgr_py":"Fàn Màolín"},{"codes":["KV2E00"],"dept":"工業工程部","mgr_id":"2008L1225","mgr":"董輝","mgr_eng":"Sky Dong","mgr_tel":"0366145835","mgr_ext":"2410","asst_id":"V23060825","asst":"Melanie Tran","asst_tel":"0948312910","asst_ext":"2430","dept_vi":"Bộ phận Kỹ thuật công nghiệp","mgr_vi":"Đổng Huy","mgr_py":"Dǒng Huī"},{"codes":["KV2N00"],"dept":"新產品導入二 部","mgr_id":"8703192","mgr":"馮錦泉","mgr_eng":"Steven Fen","mgr_tel":"0975003235","mgr_ext":"NA","asst_id":"V24100016","asst":"Emmy Tran","asst_tel":"0965421143","asst_ext":"2710","dept_vi":"Bộ phận Đưa SP mới vào SX 2","mgr_vi":"Phùng Cẩm Tuyền","mgr_py":"Féng Jǐnquán"},{"codes":["KV2R00"],"dept":"失效分析部","mgr_id":"9602119","mgr":"黃士峰（兼）","mgr_eng":"Terry SF Huang","mgr_tel":"0387879202","mgr_ext":"2600","asst_id":"V23050049","asst":"Dion Nguyen","asst_tel":"0979528491","asst_ext":"NA","dept_vi":"Bộ phận Phân tích lỗi","mgr_vi":"Hoàng Sĩ Phong （kiêm）","mgr_py":"Huáng Shìfēng"},{"codes":["KV2T00"],"dept":"測試工程部","mgr_id":"200807388","mgr":"孫一國","mgr_eng":"Rising Sun","mgr_tel":"0984753560","mgr_ext":"2510","asst_id":"V25040039","asst":"Lily Vu","asst_tel":"0329980623","asst_ext":"2501","dept_vi":"Bộ phận Kỹ thuật kiểm tra","mgr_vi":"Tôn Nhất Quốc","mgr_py":"Sūn Yīguó"},{"codes":["KV2W00"],"dept":"物流管理部","mgr_id":"200701001","mgr":"蔡華海","mgr_eng":"Aaron Cai","mgr_tel":"0363342832","mgr_ext":"NA","asst_id":"V25070054","asst":"Trannie Dang","asst_tel":"0329157869","asst_ext":"NA","dept_vi":"Bộ phận Quản lý vật tư","mgr_vi":"Thái Hoa Hải","mgr_py":"Cài Huáhǎi"},{"codes":["KV2X00"],"dept":"產品工程部","mgr_id":"2008L0842","mgr":"陳剛","mgr_eng":"Jarry Chen","mgr_tel":"0388015317","mgr_ext":"2520","asst_id":"V24050013","asst":"Gina Hoang","asst_tel":"0973187146","asst_ext":"NA","dept_vi":"Bộ phận Kỹ thuật sản phẩm","mgr_vi":"Trần Cương","mgr_py":"Chén Gāng"},{"codes":["KV2P00"],"dept":"新產品導入一部","mgr_id":"2008L0096","mgr":"馮錦泉","mgr_eng":"Steven Fen","mgr_tel":"0975003235","mgr_ext":"NA","asst_id":"V24100016","asst":"Emmy Tran","asst_tel":"0565838316","asst_ext":"2501","dept_vi":"Bộ phận Đưa SP mới vào SX 1","mgr_vi":"Phùng Cẩm Tuyền","mgr_py":"Féng Jǐnquán"},{"codes":["EM0000","KV3000"],"dept":"越南三廠","mgr_id":"10708131","mgr":"朱河源（副總監）","mgr_eng":"Wilson Chu","mgr_tel":"0394190650","mgr_ext":"NA","asst_id":"Q20030501","asst":"Kiana Yang","asst_tel":"0336527606","asst_ext":"NA","dept_vi":"Nhà máy 3 Việt Nam","mgr_vi":"Chu Hà Nguyên （Phó TGĐ）","mgr_py":"Zhū Héyuán"},{"codes":["KV3000"],"dept":"越南三廠","mgr_id":"200612632","mgr":"葛林華（副廠長）","mgr_eng":"George Ko","mgr_tel":"0373077301","mgr_ext":"3002","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Nhà máy 3 Việt Nam","mgr_vi":"Cát Lâm Hoa （副Giám đốc NM）","mgr_py":"Gě Línhuá"},{"codes":["KV3000"],"dept":"越南三廠","mgr_id":"9503107","mgr":"盧福祺（副廠長）","mgr_eng":"Samuel Loo","mgr_tel":"0393703725","mgr_ext":"NA","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Nhà máy 3 Việt Nam","mgr_vi":"Lô Phúc Kỳ （副Giám đốc NM）","mgr_py":"Lú Fúqí"},{"codes":["KV3000"],"dept":"越南三廠","mgr_id":"200607169","mgr":"吳錢財（副廠長）","mgr_eng":"Aly Wu","mgr_tel":"0969317803","mgr_ext":"NA","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Nhà máy 3 Việt Nam","mgr_vi":"Ngô Tiền Tài （副Giám đốc NM）","mgr_py":"Wú Qiáncái"},{"codes":["KV3D00"],"dept":"專案室","mgr_id":"10708131","mgr":"朱河源（副總監）","mgr_eng":"Wilson Chu","mgr_tel":"0394190650","mgr_ext":"NA","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Phòng Dự án","mgr_vi":"Chu Hà Nguyên （Phó TGĐ）","mgr_py":"Zhū Héyuán"},{"codes":["KV3E00"],"dept":"工業工程部","mgr_id":"200607169","mgr":"吳錢財（兼）","mgr_eng":"Aly Wu","mgr_tel":"0969317803","mgr_ext":"NA","asst_id":"V24050015","asst":"Mina Doan","asst_tel":"0395389520","asst_ext":"NA","dept_vi":"Bộ phận Kỹ thuật công nghiệp","mgr_vi":"Ngô Tiền Tài （kiêm）","mgr_py":"Wú Qiáncái"},{"codes":["KV3100"],"dept":"產銷管理部","mgr_id":"Z17063025","mgr":"劉小見","mgr_eng":"Jason X Liu","mgr_tel":"0969316174","mgr_ext":"NA","asst_id":"V23090037\nV24110037","asst":"Naomi Ngo\nClara Luong","asst_tel":"0967739465\n0949386480","asst_ext":"NA","dept_vi":"Bộ phận Quản lý sản xuất & kinh doanh","mgr_vi":"Lưu Tiểu Kiến","mgr_py":"Liú Xiǎojiàn"},{"codes":["KV3200"],"dept":"採購部","mgr_id":"200609016","mgr":"郭玲","mgr_eng":"Tracy Guo","mgr_tel":"0965896380","mgr_ext":"3501","asst_id":"V23100009","asst":"Happer Ha","asst_tel":"0326215470","asst_ext":"3507","dept_vi":"Bộ phận Mua hàng","mgr_vi":"Quách Linh","mgr_py":"Guō Líng"},{"codes":["KV3W00"],"dept":"物流管理部","mgr_id":"Z12093031","mgr":"熊華","mgr_eng":"Alex Xiong","mgr_tel":"0368570807","mgr_ext":"NA","asst_id":"V25050006","asst":"Yoona Nguyen","asst_tel":"0972537156","asst_ext":"NA","dept_vi":"Bộ phận Quản lý vật tư","mgr_vi":"Hùng Hoa","mgr_py":"Xióng Huá"},{"codes":["KV3500"],"dept":"機構工程部","mgr_id":"200807028","mgr":"林北慶（代）","mgr_eng":"Bob Lin","mgr_tel":"0989805730","mgr_ext":"NA","asst_id":"V25060119","asst":"Jessica Ha","asst_tel":"0989805730","asst_ext":"NA","dept_vi":"Bộ phận Kỹ thuật cơ khí","mgr_vi":"Lâm Bắc Khánh （tạm）","mgr_py":"Lín Běiqìng"},{"codes":["KV3800"],"dept":"品質保證部","mgr_id":"200707199","mgr":"劉中勤","mgr_eng":"Luke Z Liu","mgr_tel":"0946063980","mgr_ext":"NA","asst_id":"V25040061","asst":"Jennie Dang","asst_tel":"0965264306","asst_ext":"NA","dept_vi":"Bộ phận Đảm bảo chất lượng","mgr_vi":"Lưu Trung Cần","mgr_py":"Liú Zhōngqín"},{"codes":["KV3C00"],"dept":"客戶導向一部","mgr_id":"9503107","mgr":"盧福祺（兼）","mgr_eng":"Samuel Loo","mgr_tel":"0393703725","mgr_ext":"NA","asst_id":"","asst":"","asst_tel":"","asst_ext":"NA","dept_vi":"Bộ phận Định hướng KH 1","mgr_vi":"Lô Phúc Kỳ （kiêm）","mgr_py":"Lú Fúqí"},{"codes":["KV3C00"],"dept":"客戶導向一部","mgr_id":"200609021","mgr":"朱相慧（代）","mgr_eng":"Herry Zhu","mgr_tel":"0832645125","mgr_ext":"NA","asst_id":"","asst":"","asst_tel":"","asst_ext":"NA","dept_vi":"Bộ phận Định hướng KH 1","mgr_vi":"Chu Tương Huệ （tạm）","mgr_py":"Zhū Xiānghuì"},{"codes":["KV3G00"],"dept":"客戶導向二部","mgr_id":"9402105","mgr":"黃仁忠","mgr_eng":"Anson Huang","mgr_tel":"0327956908","mgr_ext":"NA","asst_id":"","asst":"","asst_tel":"","asst_ext":"NA","dept_vi":"Bộ phận Định hướng KH 2","mgr_vi":"Hoàng Nhân Trung","mgr_py":"Huáng Rénzhōng"},{"codes":["KV3A00"],"dept":"PCBA工程部","mgr_id":"200911419","mgr":"王傳軍","mgr_eng":"Jooy Wang","mgr_tel":"0383726651","mgr_ext":"NA","asst_id":"V25050085","asst":"Caryln Bui","asst_tel":"0966215621","asst_ext":"NA","dept_vi":"Bộ phận Kỹ thuật PCBA","mgr_vi":"Vương Truyền Quân","mgr_py":"Wáng Chuánjūn"},{"codes":["KV3A00"],"dept":"PCBA工程部","mgr_id":"10812103","mgr":"趙明騰（代）","mgr_eng":"Teng Chao","mgr_tel":"0865729812","mgr_ext":"NA","asst_id":"","asst":"","asst_tel":"","asst_ext":"NA","dept_vi":"Bộ phận Kỹ thuật PCBA","mgr_vi":"Triệu Minh Đằng （tạm）","mgr_py":"Zhào Míngténg"},{"codes":["KV3X00"],"dept":"產品工程部","mgr_id":"200807094","mgr":"曾冬俊（代）","mgr_eng":"Kevin Zeng","mgr_tel":"0385677690","mgr_ext":"NA","asst_id":"V25093477","asst":"Iris Tran","asst_tel":"0961911940","asst_ext":"NA","dept_vi":"Bộ phận Kỹ thuật sản phẩm","mgr_vi":"Tăng Đông Tuấn （tạm）","mgr_py":"Zēng Dōngjùn"},{"codes":["KV3T00"],"dept":"測試工程部","mgr_id":"200004001","mgr":"董英杰","mgr_eng":"Robin Dong","mgr_tel":"0357149870","mgr_ext":"NA","asst_id":"V24081395","asst":"Hanna Trinh","asst_tel":"0964112311","asst_ext":"NA","dept_vi":"Bộ phận Kỹ thuật kiểm tra","mgr_vi":"Đổng Anh Kiệt","mgr_py":"Dǒng Yīngjié"},{"codes":["KV3N00"],"dept":"新產品導入部","mgr_id":"Z11042729","mgr":"黃鋒強","mgr_eng":"Arick Huang","mgr_tel":"0333468760","mgr_ext":"NA","asst_id":"V24110068","asst":"Helen Bui","asst_tel":"0348861642","asst_ext":"NA","dept_vi":"Bộ phận Đưa SP mới vào SX","mgr_vi":"Hoàng Phong Cường","mgr_py":"Huáng Fēngqiáng"},{"codes":["KV3S00"],"dept":"失效分析部","mgr_id":"200310148","mgr":"劉遠華","mgr_eng":"Kris Liu","mgr_tel":"0989881430","mgr_ext":"NA","asst_id":"V25022206","asst":"Flower Nguyen","asst_tel":"0325402486","asst_ext":"NA","dept_vi":"Bộ phận Phân tích lỗi","mgr_vi":"Lưu Viễn Hoa","mgr_py":"Liú Yuǎnhuá"},{"codes":["KV3700"],"dept":"生產部","mgr_id":"2008L0044","mgr":"崔先廷","mgr_eng":"XT Cui","mgr_tel":"0823957169","mgr_ext":"NA","asst_id":"V24040008","asst":"Peony Nguyen","asst_tel":"0986095375","asst_ext":"NA","dept_vi":"Bộ phận Sản xuất","mgr_vi":"Thôi Tiên Đình","mgr_py":"Cuī Xiāntíng"},{"codes":["KV5000"],"dept":"越南五廠","mgr_id":"8604162","mgr":"連士毅\n華西廠區副總經理兼廠長","mgr_eng":"Anderson Lian","mgr_tel":"NA","mgr_ext":"NA","asst_id":"Q15110001","asst":"Grace Gao（WCQ)","asst_tel":"NA","asst_ext":"8550-1320","dept_vi":"Nhà máy 5 Việt Nam","mgr_vi":"連士毅\n華西廠區副總經理兼廠長","mgr_py":""},{"codes":["KV5000"],"dept":"越南五廠","mgr_id":"10604115","mgr":"丁德基（副廠長）","mgr_eng":"Thomas Ting","mgr_tel":"0332930256","mgr_ext":"NA","asst_id":"V24100008","asst":"Sophia nguyen","asst_tel":"0828662729","asst_ext":"NA","dept_vi":"Nhà máy 5 Việt Nam","mgr_vi":"Đinh Đức Cơ （副Giám đốc NM）","mgr_py":"Dīng Déjī"},{"codes":["KV5000"],"dept":"越南五廠","mgr_id":"D05040350","mgr":"楊新春（副廠長）","mgr_eng":"Davy Yang","mgr_tel":"NA","mgr_ext":"NA","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Nhà máy 5 Việt Nam","mgr_vi":"Dương Tân Xuân （副Giám đốc NM）","mgr_py":"Yáng Xīnchūn"},{"codes":["KV5100"],"dept":"產銷管理部","mgr_id":"Q11073920","mgr":"张斌","mgr_eng":"Zebina Zhang","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V24100052","asst":"Vivian Nguyen","asst_tel":"0989903890","asst_ext":"NA","dept_vi":"Bộ phận Quản lý sản xuất & kinh doanh","mgr_vi":"Trương Bân","mgr_py":"Zhāng Bīn"},{"codes":["KV5200"],"dept":"電子采購部","mgr_id":"Q13070003","mgr":"王覓","mgr_eng":"Misa Wang","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V25050094","asst":"Gigi Hoang","asst_tel":"0359384366","asst_ext":"NA","dept_vi":"Bộ phận Mua hàng điện tử","mgr_vi":"Vương Mịch","mgr_py":"Wáng Mì"},{"codes":["KV5600"],"dept":"PCBA生产部","mgr_id":"K1204814","mgr":"李彦彦","mgr_eng":"Yanyan Li","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V24110061","asst":"Elysia Tran","asst_tel":"0374536575","asst_ext":"NA","dept_vi":"Bộ phận Sản xuất PCBA","mgr_vi":"Lý Ngạn Ngạn","mgr_py":"Lǐ Yànyàn"},{"codes":["KV5700"],"dept":"成品生產部","mgr_id":"Q06023290","mgr":"張園園","mgr_eng":"Yoyo Zhang","mgr_tel":"0819856236","mgr_ext":"NA","asst_id":"V25040084","asst":"Lily Phung","asst_tel":"0968604204","asst_ext":"","dept_vi":"Bộ phận Sản xuất thành phẩm","mgr_vi":"Trương Viên Viên","mgr_py":"Zhāng Yuányuán"},{"codes":["KV5800"],"dept":"品質经营部","mgr_id":"Q08071350","mgr":"萬雪峰","mgr_eng":"Andy Wan","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V25050057","asst":"Lillie Bui","asst_tel":"0386896304","asst_ext":"NA","dept_vi":"Bộ phận Kinh doanh chất lượng","mgr_vi":"Vạn Tuyết Phong","mgr_py":"Wàn Xuěfēng"},{"codes":["KV5900"],"dept":"机构工程暨供應商管理部","mgr_id":"Q0804H340","mgr":"王磊","mgr_eng":"Issac Wang","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V25010032","asst":"Maya Vu","asst_tel":"0866813360","asst_ext":"NA","dept_vi":"BP KT cơ khí & QL nhà cung cấp","mgr_vi":"Vương Lỗi","mgr_py":"Wáng Lěi"},{"codes":["KV5A00"],"dept":"自動化暨新製程工程部","mgr_id":"Q05127320","mgr":"吳琮凱","mgr_eng":"TK Wu","mgr_tel":"0822659818","mgr_ext":"NA","asst_id":"V25030093","asst":"Olivia Trinh","asst_tel":"0865331287","asst_ext":"NA","dept_vi":"BP Tự động hóa & Quy trình mới","mgr_vi":"Ngô Tông Khải","mgr_py":"Wú Cóngkǎi"},{"codes":["KV5E00"],"dept":"工業工程部","mgr_id":"Q03030150","mgr":"張加峰","mgr_eng":"Angie Zhang","mgr_tel":"0853088928","mgr_ext":"NA","asst_id":"V25031821","asst":"Cathy Nguyen","asst_tel":"0704830004","asst_ext":"NA","dept_vi":"Bộ phận Kỹ thuật công nghiệp","mgr_vi":"Trương Gia Phong","mgr_py":"Zhāng Jiāfēng"},{"codes":["KV5F00"],"dept":"經營分析部","mgr_id":"Q12040208","mgr":"石慶軍","mgr_eng":"Stone Q Shi","mgr_tel":"0822955822","mgr_ext":"NA","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Bộ phận Phân tích kinh doanh","mgr_vi":"Thạch Khánh Quân","mgr_py":"Shí Qìngjūn"},{"codes":["KV5K00"],"dept":"機構采購部","mgr_id":"K0302018","mgr":"徐純龍","mgr_eng":"Willian Xu","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V25020063","asst":"Ruth Ngo","asst_tel":"0393683283","asst_ext":"","dept_vi":"Bộ phận Mua hàng cơ khí","mgr_vi":"Từ Thuần Long","mgr_py":"Xú Chúnlóng"},{"codes":["KV5R00"],"dept":"失效分析部","mgr_id":"K0410077","mgr":"高井玉","mgr_eng":"Kevin Gao","mgr_tel":"0886268155","mgr_ext":"NA","asst_id":"V24100051","asst":"Sky bui","asst_tel":"0389396952","asst_ext":"NA","dept_vi":"Bộ phận Phân tích lỗi","mgr_vi":"Cao Tỉnh Ngọc","mgr_py":"Gāo Jǐngyù"},{"codes":["KV5T00"],"dept":"產品暨測試工程部","mgr_id":"Q13090019","mgr":"王绪贵","mgr_eng":"Xugui Wang","mgr_tel":"0823122855","mgr_ext":"NA","asst_id":"V25070123","asst":"Mavie Nguyen","asst_tel":"0345776793","asst_ext":"NA","dept_vi":"BP KT sản phẩm & Kiểm tra","mgr_vi":"Vương Tự Quý","mgr_py":"Wáng Xùguì"},{"codes":["KV5W00"],"dept":"物流管理部","mgr_id":"D05040350","mgr":"楊新春（兼）","mgr_eng":"Davy Yang","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V25030125","asst":"Fairy wang\nLucy Ha","asst_tel":"0345776793","asst_ext":"NA","dept_vi":"Bộ phận Quản lý vật tư","mgr_vi":"Dương Tân Xuân （kiêm）","mgr_py":"Yáng Xīnchūn"},{"codes":["KVD000"],"dept":"研發設計處","mgr_id":"9311110","mgr":"林志宏（兼）","mgr_eng":"Jason CH Lin","mgr_tel":"0337993422","mgr_ext":"1100","asst_id":"V21060102","asst":"Xavia Ninh","asst_tel":"0396977099","asst_ext":"1012","dept_vi":"Phòng Nghiên cứu & Thiết kế","mgr_vi":"Lâm Chí Hoành （kiêm）","mgr_py":"Lín Zhìhóng"},{"codes":["KV0B00"],"dept":"MRO採購部","mgr_id":"8306160","mgr":"呂麗鳳","mgr_eng":"Ally Lu","mgr_tel":"0328275140","mgr_ext":"6302","asst_id":"V24060033","asst":"Jenny Nguyen","asst_tel":"0984158537","asst_ext":"6303","dept_vi":"Bộ phận Mua hàng MRO","mgr_vi":"Lữ Lệ Phượng","mgr_py":"Lǚ Lìfèng"},{"codes":[],"dept":"","mgr_id":"D24071223","mgr":"柳衍敏","mgr_eng":"Senlan Liu","mgr_tel":"0375116714","mgr_ext":"","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"","mgr_vi":"Liễu Diễn Mẫn","mgr_py":"Liǔ Yǎnmǐn"},{"codes":["KV0E00"],"dept":"ESG專案室","mgr_id":"K24020288","mgr":"周少青","mgr_eng":"Sq Zhou","mgr_tel":"0823399258","mgr_ext":"6117","asst_id":"V25050038","asst":"Nancy Shao","asst_tel":"NA","asst_ext":"NA","dept_vi":"Phòng Dự án ESG","mgr_vi":"Chu Thiếu Thanh","mgr_py":"Zhōu Shǎoqīng"},{"codes":["KV0F00"],"dept":"財務部","mgr_id":"9910060","mgr":"蔡建安","mgr_eng":"Vincent C Tsai","mgr_tel":"NA","mgr_ext":"","asst_id":"D17090581","asst":"Yanyan hu（WCD)","asst_tel":"NA","asst_ext":"NA","dept_vi":"Bộ phận Tài chính","mgr_vi":"Thái Kiến An","mgr_py":"Cài Jiànān"},{"codes":[],"dept":"","mgr_id":"K24020347","mgr":"吴美群","mgr_eng":"Ency Wu","mgr_tel":"085682203","mgr_ext":"8567","asst_id":"V24050030","asst":"Aki Quan","asst_tel":"0969706356","asst_ext":"6805","dept_vi":"","mgr_vi":"Ngô Mỹ Quần","mgr_py":"Wú Měiqún"},{"codes":["KV0I00"],"dept":"越南經營專案部","mgr_id":"2008L0233","mgr":"周華民","mgr_eng":"Xulong Zhou","mgr_tel":"0982950270","mgr_ext":"6401","asst_id":"V24091212","asst":"Mia Nguyen","asst_tel":"0868360642","asst_ext":"6401","dept_vi":"BP Dự án kinh doanh VN","mgr_vi":"Chu Hoa Dân","mgr_py":"Zhōu Huámín"},{"codes":["KV0D00"],"dept":"數位轉型專案室","mgr_id":"","mgr":"","mgr_eng":"","mgr_tel":"","mgr_ext":"","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Phòng Chuyển đổi số","mgr_vi":"","mgr_py":""},{"codes":["KVL000"],"dept":"資訊管理處","mgr_id":"200606061","mgr":"施玉奇","mgr_eng":"Windy Shi","mgr_tel":"0865910130","mgr_ext":"NA","asst_id":"V25020016","asst":"Orchid Mai\nMari Nguyen","asst_tel":"0889559129","asst_ext":"NA","dept_vi":"Phòng Quản lý CNTT","mgr_vi":"Thi Ngọc Kỳ","mgr_py":"Shī Yùqí"},{"codes":["KVL100"],"dept":"應用系統服務部","mgr_id":"D1107X650","mgr":"雷红俊","mgr_eng":"Wide Lei","mgr_tel":"0388747910","mgr_ext":"","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"BP Dịch vụ hệ thống ứng dụng","mgr_vi":"Lôi Hồng Tuấn","mgr_py":"Léi Hóngjùn"},{"codes":["KVL200"],"dept":"製造系統服務部","mgr_id":"200606061","mgr":"施玉奇（兼）","mgr_eng":"Windy Shi","mgr_tel":"0865910130","mgr_ext":"","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"BP Dịch vụ hệ thống sản xuất","mgr_vi":"Thi Ngọc Kỳ （kiêm）","mgr_py":"Shī Yùqí"},{"codes":["KVL300"],"dept":"資訊架構及資訊安全服務部","mgr_id":"200111084","mgr":"鄢周俊","mgr_eng":"George Yan","mgr_tel":"0836500568","mgr_ext":"","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"BP Hạ tầng & An ninh CNTT","mgr_vi":"Yên Chu Tuấn","mgr_py":"Yān Zhōujùn"},{"codes":["KVT000"],"dept":"進出口處","mgr_id":"8405126","mgr":"徐朝祺","mgr_eng":"C.C. Syu","mgr_tel":"0829366418","mgr_ext":"NA","asst_id":"V25041884","asst":"Salary Luong","asst_tel":"NA","asst_ext":"NA","dept_vi":"Phòng Xuất nhập khẩu","mgr_vi":"Từ Triều Kỳ","mgr_py":"Xú Cháoqí"},{"codes":["KVT100"],"dept":"進出口部","mgr_id":"","mgr":"","mgr_eng":"","mgr_tel":"","mgr_ext":"","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Bộ phận Xuất nhập khẩu","mgr_vi":"","mgr_py":""},{"codes":["KVT200"],"dept":"關務部","mgr_id":"","mgr":"","mgr_eng":"","mgr_tel":"","mgr_ext":"","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Bộ phận Hải quan","mgr_vi":"","mgr_py":""},{"codes":["KV0U00"],"dept":"廠務部","mgr_id":"K2403W095","mgr":"郭志敏","mgr_eng":"Jimmy Guo","mgr_tel":"0904796670","mgr_ext":"6501","asst_id":"V24060013","asst":"Jessy Nguyen","asst_tel":"0353561568","asst_ext":"NA","dept_vi":"Bộ phận Quản lý nhà máy","mgr_vi":"Quách Chí Mẫn","mgr_py":"Guō Zhìmǐn"},{"codes":["KV0C00"],"dept":"行政部","mgr_id":"Q08070810","mgr":"白新彦","mgr_eng":"XY Bai","mgr_tel":"0355186785","mgr_ext":"6101","asst_id":"V25090041","asst":"Danna Nguyen","asst_tel":"0355134736","asst_ext":"","dept_vi":"Bộ phận Hành chính","mgr_vi":"Bạch Tân Ngạn","mgr_py":"Bái Xīnyàn"},{"codes":["KVA000"],"dept":"人力資源處","mgr_id":"K24020288","mgr":"周少青","mgr_eng":"Sq Zhou","mgr_tel":"0823399258","mgr_ext":"6117","asst_id":"V25050038","asst":"Nancy Shao","asst_tel":"NA","asst_ext":"NA","dept_vi":"Phòng Nhân sự","mgr_vi":"Chu Thiếu Thanh","mgr_py":"Zhōu Shǎoqīng"},{"codes":["KVAH00"],"dept":"人才發展部","mgr_id":"10811075","mgr":"盧奕全","mgr_eng":"Tiger Lu","mgr_tel":"0336301160","mgr_ext":"6201","asst_id":"V22080278","asst":"Mary Vu","asst_tel":"0358154493","asst_ext":"6202","dept_vi":"Bộ phận Phát triển nhân tài","mgr_vi":"Lô Dịch Toàn","mgr_py":"Lú Yìquán"},{"codes":["KVAR00"],"dept":"薪資員關部","mgr_id":"K24020288","mgr":"周少青","mgr_eng":"Sq Zhou","mgr_tel":"0823399258","mgr_ext":"6117","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"BP Lương & Quan hệ nhân viên","mgr_vi":"Chu Thiếu Thanh","mgr_py":"Zhōu Shǎoqīng"},{"codes":["KVAX00"],"dept":"员工关系部","mgr_id":"K24020288","mgr":"周少青","mgr_eng":"Sq Zhou","mgr_tel":"0823399258","mgr_ext":"6117","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Bộ phận Quan hệ nhân viên","mgr_vi":"Chu Thiếu Thanh","mgr_py":"Zhōu Shǎoqīng"},{"codes":["KVAD00"],"dept":"人力管理部","mgr_id":"D25020529","mgr":"甘积坤","mgr_eng":"Jacky Gan","mgr_tel":"0814985130","mgr_ext":"6201","asst_id":"","asst":"","asst_tel":"","asst_ext":"","dept_vi":"Bộ phận Quản lý nhân lực","mgr_vi":"Cam Tích Côn","mgr_py":"Gān Jīkūn"},{"codes":["WJ6100"],"dept":"越南法律事務部","mgr_id":"10912081","mgr":"張峻傑","mgr_eng":"Ken Chang","mgr_tel":"0868953256","mgr_ext":"6850","asst_id":"V22060030","asst":"Doris Nguyen","asst_tel":"0979610521","asst_ext":"6840","dept_vi":"BP Pháp lý Việt Nam","mgr_vi":"Trương Tuấn Kiệt","mgr_py":"Zhāng Jùnjié"},{"codes":["JSMV00"],"dept":"越南機構資源開發部","mgr_id":"10309126","mgr":"卓志民","mgr_eng":"Edward Cho","mgr_tel":"0815735860","mgr_ext":"3101","asst_id":"V24010004","asst":"Helena Tran","asst_tel":"NA","asst_ext":"NA","dept_vi":"BP Phát triển nguồn lực cơ khí VN","mgr_vi":"Trác Chí Dân","mgr_py":"Zhuó Zhìmín"},{"codes":["WS3V00"],"dept":"越南建廠小組","mgr_id":"K2403W094","mgr":"付世海","mgr_eng":"Conan Fu","mgr_tel":"0367280831","mgr_ext":"6510","asst_id":"V25080038","asst":"Sunny Cao","asst_tel":"0975566783","asst_ext":"NA","dept_vi":"Nhóm Xây dựng nhà máy VN","mgr_vi":"Phó Thế Hải","mgr_py":"Fù Shìhǎi"},{"codes":["152V00"],"dept":"越南業務管理部","mgr_id":"D08044060","mgr":"刘恒（WCD)","mgr_eng":"Aaron H Liu","mgr_tel":"18507170053","mgr_ext":"NA","asst_id":"V25040075","asst":"Hebe Trinh","asst_tel":"0916042866","asst_ext":"NA","dept_vi":"BP Quản lý kinh doanh VN","mgr_vi":"Lưu Hằng （WCD)","mgr_py":"Liú Héng"},{"codes":["13L710"],"dept":"重慶訂單管理一課","mgr_id":"Q11073720","mgr":"全娅莉(WCQ)","mgr_eng":"Cathy Quan","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V24100052","asst":"Vivian Nguyen","asst_tel":"0989903890","asst_ext":"NA","dept_vi":"Khóa QL đơn hàng Trùng Khánh 1","mgr_vi":"Toàn Nhã Lợi (WCQ)","mgr_py":"Quán Yǎlì"},{"codes":["1BAQ20"],"dept":"業務二課","mgr_id":"Q1107Z456","mgr":"高丹(WCQ)","mgr_eng":"Ada Gao","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V25030076","asst":"Lala Duong","asst_tel":"0904590424","asst_ext":"NA","dept_vi":"Khóa Kinh doanh 2","mgr_vi":"Cao Đan (WCQ)","mgr_py":"Gāo Dān"},{"codes":["CGCV00"],"dept":"越南客服一部","mgr_id":"9011189","mgr":"吳建東(WIH)","mgr_eng":"Toni Wu","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V24061124","asst":"Lily Cao","asst_tel":"0335948842","asst_ext":"NA","dept_vi":"BP Dịch vụ KH VN 1","mgr_vi":"Ngô Kiến Đông (WIH)","mgr_py":"Wú Jiàndōng"},{"codes":["CGCR00"],"dept":"越南客服二部","mgr_id":"9011189","mgr":"吳建東(WIH)","mgr_eng":"Toni Wu","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V25070134","asst":"Athena Ngo","asst_tel":"0364789158","asst_ext":"NA","dept_vi":"BP Dịch vụ KH VN 2","mgr_vi":"Ngô Kiến Đông (WIH)","mgr_py":"Wú Jiàndōng"},{"codes":["EU0000"],"dept":"事業部 l","mgr_id":"9402105","mgr":"黃仁忠","mgr_eng":"Anson Huang","mgr_tel":"0327956908","mgr_ext":"NA","asst_id":"Q20030501","asst":"Kiana Yang","asst_tel":"0336527606","asst_ext":"NA","dept_vi":"Bộ phận Kinh doanh I","mgr_vi":"Hoàng Nhân Trung","mgr_py":"Huáng Rénzhōng"},{"codes":["EUS300"],"dept":"業務管理部","mgr_id":"Z13033086","mgr":"李丹君(WZS)","mgr_eng":"Amy L Lee","mgr_tel":"18925393615","mgr_ext":"NA","asst_id":"V25070071","asst":"Ayla Tran","asst_tel":"NA","asst_ext":"NA","dept_vi":"Bộ phận Quản lý kinh doanh","mgr_vi":"Lý Đan Quân (WZS)","mgr_py":"Lǐ Dānjūn"},{"codes":["EUZ100"],"dept":"業務管理一部","mgr_id":"200606025","mgr":"馬俊","mgr_eng":"Tom Ma","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V25080069","asst":"Jennifer Pham","asst_tel":"0985920985","asst_ext":"NA","dept_vi":"BP Quản lý kinh doanh 1","mgr_vi":"Mã Tuấn","mgr_py":"Mǎ Jùn"},{"codes":["1C9000"],"dept":"越南機構設計課","mgr_id":"10009050","mgr":"游家麒","mgr_eng":"Jungle You","mgr_tel":"0889933465","mgr_ext":"NA","asst_id":"V22100092","asst":"Nini Tran","asst_tel":"0349801622","asst_ext":"1303","dept_vi":"Khóa Thiết kế cơ khí VN","mgr_vi":"Du Gia Kỳ","mgr_py":"Yóu Jiāqí"},{"codes":["1RT300"],"dept":"越南硬體設計部","mgr_id":"11202012","mgr":"張燿升","mgr_eng":"Tim YS Chang","mgr_tel":"0337454152","mgr_ext":"NA","asst_id":"V25060051","asst":"Wendy Tong","asst_tel":"0985114561","asst_ext":"NA","dept_vi":"BP Thiết kế phần cứng VN","mgr_vi":"Trương Diệu Thăng","mgr_py":"Zhāng Yàoshēng"},{"codes":["1SD0V0"],"dept":"越南軟體設計課","mgr_id":"10005821","mgr":"陳明宣（WCD)","mgr_eng":"Loren Chen","mgr_tel":"NA","mgr_ext":"NA","asst_id":"V22040018","asst":"Erik TH Tran","asst_tel":"0335891243","asst_ext":"NA","dept_vi":"Khóa Thiết kế phần mềm VN","mgr_vi":"Trần Minh Tuyên （WCD)","mgr_py":"Chén Míngxuān"},{"codes":["1DQ300"],"dept":"售後服務管理部","mgr_id":"NA","mgr":"NA","mgr_eng":"NA","mgr_tel":"NA","mgr_ext":"NA","asst_id":"NA","asst":"NA","asst_tel":"NA","asst_ext":"NA","dept_vi":"BP Quản lý dịch vụ sau bán hàng","mgr_vi":"NA","mgr_py":""},{"codes":["EM0000"],"dept":"亞太製造管理","mgr_id":"10708131","mgr":"朱河源（副總監）","mgr_eng":"Wilson Chu","mgr_tel":"0394190650","mgr_ext":"NA","asst_id":"Q20030501","asst":"Kiana Yang","asst_tel":"0336527606","asst_ext":"NA","dept_vi":"Quản lý sản xuất Châu Á - TBD","mgr_vi":"Chu Hà Nguyên （Phó TGĐ）","mgr_py":"Zhū Héyuán"},{"codes":["JMB200"],"dept":"SMT技術支援二部","mgr_id":"10810140","mgr":"郭南聖","mgr_eng":"Vincent Kuo","mgr_tel":"0333067521","mgr_ext":"NA","asst_id":"V24090011","asst":"Hannah Tran","asst_tel":"0985920985","asst_ext":"NA","dept_vi":"BP Hỗ trợ kỹ thuật SMT 2","mgr_vi":"Quách Nam Thánh","mgr_py":"Guō Nánshèng"},{"codes":["JMC600"],"dept":"越南自動化工程三部","mgr_id":"Q12123130","mgr":"李周亮","mgr_eng":"Aaron Y Li","mgr_tel":"0388580930","mgr_ext":"NA","asst_id":"V25020102","asst":"Vantiny Chu","asst_tel":"0364790281","asst_ext":"NA","dept_vi":"BP Kỹ thuật tự động hóa VN 3","mgr_vi":"Lý Chu Lượng","mgr_py":"Lǐ Zhōuliàng"},{"codes":["JMCV00"],"dept":"越南自動化開發部","mgr_id":"Q12123130","mgr":"李周亮","mgr_eng":"Aaron Y Li","mgr_tel":"0388580930","mgr_ext":"6908","asst_id":"V24080017","asst":"Lani Vu","asst_tel":"0981784583","asst_ext":"6909","dept_vi":"BP Phát triển tự động hóa VN","mgr_vi":"Lý Chu Lượng","mgr_py":"Lǐ Zhōuliàng"}];
+const SOP_DATA = [{"level":"Khen thưởng VB / 书面嘉奖","clause":"6.4.2.1","content":"6.4.2.1 Những người đã đạt được kết quả đáng kể trong việc cải tiến chất lượng và tiết kiệm được từ 3.500.000 đồng đến 17.500.000 đồng;\n对于质量改良有明显绩效；节约价值在3,500,000到17,500,000越南盾者；"},{"level":"Khen thưởng VB / 书面嘉奖","clause":"6.4.2.2","content":"6.4.2.2 Người tiết kiệm được nguyên vật liệu, vật tư, vật tiêu hao hoặc có thành tích trong việc tận dụng phế liệu, có giá trị tiết kiệm được từ 3.500.000 đồng đến 17.500.000 đồng;\n节约原料、物料、消耗品、或对废料利用有成绩，节约价值在3,500,000到17,500,000越南盾者；"},{"level":"Khen thưởng VB / 书面嘉奖","clause":"6.4.2.3","content":"6.4.2.3 Những người phát hiện và loại bỏ kịp thời những nguyên nhân gây ra sai sót, trở ngại, chẳng hạn như những người phát hiện ra tài liệu cấm/giả mạo được gửi đến.\n及时发现并消除错误和障碍的原因，例如发现正在发送的违禁或伪造文件。"},{"level":"Khen thưởng VB / 书面嘉奖","clause":"6.4.2.3.1","content":"6.4.2.3.1 Phát hiện và báo cáo những người khác có bất thường về mặt tinh thần hoặc có xu hướng tự làm hại hoặc bạo lực;\n发现并报告他人精神异常或有自残、暴力等倾向；"},{"level":"Khen thưởng VB / 书面嘉奖","clause":"6.4.2.3.2","content":"6.4.2.3.2 Tố cáo người khác vi phạm pháp luật, xâm phạm lợi ích của công ty và được xác minh là đúng sự thật;\n检举他人违法或侵害公司利益，经查证属实者；"},{"level":"Khen thưởng VB / 书面嘉奖","clause":"6.4.2.3.3","content":"6.4.2.3.3 Người phát hiện và kịp thời khắc phục nguyên nhân gây ra lỗi, trở ngại như phát hiện vật liệu đầu vào bị cấm.\n发现并及时排除错误及障碍原因者，如发现来料为禁用者"},{"level":"Khen thưởng VB / 书面嘉奖","clause":"6.4.2.4","content":"6.4.2.4 Những người có hiệu suất làm việc vượt trội, thái độ làm việc tích cực và thành tích cụ thể\n工作表现突出，工作态度积极并具有具体实绩者"},{"level":"Công nhỏ / 小功","clause":"6.4.3.2","content":"6.4.3.2 Những người có thành tích đáng kể trong việc tiết kiệm nguyên vật liệu, vật tư, vật tiêu hao hoặc trong việc sử dụng vật liệu thải, với mức tiết kiệm hàng năm vượt quá 420.000.000 đồng\n节约原料、物料、消耗品、或对于废料利用有明显成绩，年度节省超420,000,000越南盾以上"},{"level":"Công nhỏ / 小功","clause":"6.4.3.3","content":"6.4.3.3 Những người có đóng góp đáng kể cho công ty thông qua cải tiến kỹ thuật hoặc đạt được mức tiết kiệm hàng năm trên 420.000.000 đồng\n技术精进为公司做出实质贡献事迹者或年度节省超420,000,000越南盾以上"},{"level":"Công nhỏ / 小功","clause":"6.4.3.4","content":"6.4.3.4 Dự án đã đạt được sự cải thiện đáng kể về chất lượng hoặc giảm đáng kể chi phí, với mức tiết kiệm hàng năm vượt quá 420.000.000 đồng\n对于质量改良有明显提升或有降低可观成本，年度节省超420,000,000越南盾以上"},{"level":"Công nhỏ / 小功","clause":"6.4.3.6.1","content":"6.4.3.6.1 Những người nỗ lực hết mình để sửa chữa thiết bị kỹ thuật và đảm bảo sản xuất, do đó tạo ra tác động đáng kể;\n竭力抢修工程设备，保障生产，产生重大影响者；"},{"level":"Công nhỏ / 小功","clause":"6.4.3.6.2","content":"6.4.3.6.2 Người có tinh thần trách nhiệm khi xảy ra thiên tai, tham gia cứu hộ, xử lý thiên tai kịp thời, hạn chế thiệt hại;\n遇有灾害勇于负责，参与救援工作，处置得宜以减少损失者；"},{"level":"Công nhỏ / 小功","clause":"6.4.3.6.3","content":"6.4.3.6.3 Bảo vệ lợi ích chính của Công ty và tránh thua lỗ;\n维护公司重大利益，避免损失者；"},{"level":"Công nhỏ / 小功","clause":"6.4.3.6.4","content":"6.4.3.6.4 Phát hiện những mối nguy hiểm lớn về an toàn và báo cáo kịp thời.\n发现重大安全隐患并及时报告。"},{"level":"Công nhỏ / 小功","clause":"6.4.3.7","content":"6.4.3.7 Những người thể hiện tinh thần đồng đội, vượt qua khó khăn, hoàn thành xuất sắc nhiệm vụ cấp bách và có tác động đáng kể đến uy tín của công ty;\n发挥团队精神、克服困难、圆满达成紧急任务以及对公司声誉有实质影响者；"},{"level":"Công nhỏ / 小功","clause":"6.4.3.7.1","content":"6.4.3.7.1 Nhận giải thưởng của chính phủ cấp tỉnh trở lên;\n获得县级行政区或以上政府奖项；"},{"level":"Công nhỏ / 小功","clause":"6.4.3.7.2","content":"6.4.3.7.2 Nhận giải thưởng từ các hiệp hội ngành cấp quận trở lên;\n获得县级行政区或以上行业协会奖项；"},{"level":"Công nhỏ / 小功","clause":"6.4.3.7.3","content":"6.4.3.7.3 Nhận trợ cấp từ các đơn vị hành chính cấp huyện trở lên;\n获得县级行政区或以上单位颁发的补贴；"},{"level":"Công nhỏ / 小功","clause":"6.4.3.7.4","content":"6.4.3.7.4 Nhận giải thưởng từ khách hàng hoặc đồng nghiệp.\n获得客户或同业之间的评比奖项。"},{"level":"Công nhỏ / 小功","clause":"6.4.3.8","content":"6.4.3.8 Những người thực hiện nhiệm vụ cụ thể một cách vô tư và có hiệu suất vượt trội.\n执行特定任务，公而忘私，且表现优异者。"},{"level":"Đại công / 大功","clause":"6.4.4.1.1","content":"6.4.4.1.1 Người có sáng kiến cải tiến, sáng chế về công nghệ sản xuất, chất lượng sản phẩm, đem lại lợi ích to lớn hoặc tránh được tổn thất cho công ty, tiết kiệm hàng năm trên 840.000.000 đồng\n对于生产技术、产品质量有所改进或发明，年度节省超840,000,000越南盾以上者；"},{"level":"Đại công / 大功","clause":"6.4.4.1.2","content":"6.4.4.1.2 Đề xuất các vấn đề có lợi cho Công ty và có đóng góp đáng kể vào việc giảm chi phí, với mức tiết kiệm hàng năm vượt quá 840.000.000 đồng\n建议有利于本公司之事项，对降低成本有重大贡献，年度节省超840,000,000越南盾以上者。"},{"level":"Đại công / 大功","clause":"6.4.4.2.1","content":"6.4.4.2.1 Trong trường hợp xảy ra bất kỳ sự cố nào gây nguy hiểm đến lợi ích của công ty, Công ty phải có khả năng kịp thời ngăn chặn hoặc chuyển nguy cơ đó thành an toàn;\n遇有危害公司权益或其它非常事件，能及时制止或转危为安，使企业或客户免受最大损害；"},{"level":"Đại công / 大功","clause":"6.4.4.2.2","content":"6.4.4.2.2 Những người có thể báo cáo hoặc ngăn chặn trước các hành vi gian lận hoặc sự cố gây tổn hại đến lợi ích của công ty;\n对于舞弊或危害公司权益之事件，能给予检举或事前防止，使公司免受损失或减少损失者。"},{"level":"Đại công / 大功","clause":"6.4.4.3.1","content":"6.4.4.3.1 Nhân viên có những đóng góp đặc biệt, mang lại lợi ích đáng kể cho công ty hoặc có tác động đáng kể đến danh tiếng của công ty;\n员工有特殊贡献，使公司获得显着效益或对公司声誉有重大影响者；"},{"level":"Đại công / 大功","clause":"6.4.4.3.1.1","content":"1) Được nhận các giải thưởng của Nhà nước từ đơn vị hành chính cấp 1 trở lên;\n获得所在国家一级行政区或以上政府奖项；"},{"level":"Đại công / 大功","clause":"6.4.4.3.1.2","content":"2) Nhận giải thưởng từ các hiệp hội ngành nghề ở cấp khu vực hành chính cấp 1 trở lên;\n获得所在国家一级行政区或以上行业协会奖项；"},{"level":"Đại công / 大功","clause":"6.4.4.3.1.3","content":"3) Nhận trợ cấp từ đơn vị hành chính cấp 1 trở lên;\n获得所在国家一级行政区或以上单位颁发的补贴；"},{"level":"Đại công / 大功","clause":"6.4.4.3.1.4","content":"4) Chỉ đạo sản xuất thử nghiệm và sản xuất hàng loạt thành công mẫu sản phẩm mới đầu tiên của khách hàng mới;\n主导新客户首个新机种试产并顺利量产；"},{"level":"Đại công / 大功","clause":"6.4.4.3.1.5","content":"5) Chỉ đạo đợt kiểm toán đầu tiên đối với khách hàng mới và vượt qua thành công;\n主导新客户首次稽核并成功通过；"},{"level":"Đại công / 大功","clause":"6.4.4.3.1.6","content":"6) Chỉ đạo xây dựng nhà máy, phân xưởng, dây chuyền sản xuất mới, đảm bảo sản xuất thành công;\n主导全新厂房、车间、线体等生产架设并能成功生产；"},{"level":"Đại công / 大功","clause":"6.4.4.3.1.7","content":"7) Dẫn đầu việc giới thiệu các hệ thống bên ngoài mới;\n主导外部全新系统导入；"},{"level":"Đại công / 大功","clause":"6.4.4.3.1.8","content":"8) Chỉ đạo phát triển các hệ thống nội bộ mới;\n主导内部全新系统开发；"},{"level":"Đại công / 大功","clause":"6.4.4.3.1.9","content":"9) Công nghệ mới hàng đầu trong ngành đã được đưa vào nhà máy thành công.\n主导业界全新技术首次成功导入厂区并应用于生产者。"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.1.1","content":"6.4.5.1.1 Người lao động vắng mặt tại nơi làm việc liên tục 4 giờ nhưng dưới 1 ngày mà không có lý do chính đáng;\n无正当理由连续旷工4小时但未达1天者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.1.2","content":"6.4.5.1.2 Đi muộn hoặc về sớm ba lần một tháng không phải vì lý do bất khả kháng;\n非不可抗力等理由，月度迟到或早退3次者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.1.3","content":"6.4.5.1.3 Vi phạm quy định phòng thi như ký tên thay người khác, không cất điện thoại di động theo quy định, đổi chỗ ngồi khi chưa được phép;\n违反考场纪律，如替人签到、未按规定存放手机、未经允许调换座位等。"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.2.1","content":"6.4.5.2.1 Công nhân sản xuất đi muộn quá 5 phút sau giờ nghỉ giải lao trong giờ làm việc mà không được sự đồng ý của người quản lý trực tiếp;\n产线作业员工在工作时间内未经直属主管同意，休息时间结束后迟到5分钟以上者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.2.2","content":"6.4.5.2.2 Trong giờ làm việc, làm những việc không liên quan đến công việc (như chơi game, xem phim...) đối với người vi phạm lần đầu;\n工作时间内做与工作无关之事（如玩游戏、看电影等），第一次违规者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.2.3","content":"6.4.5.2.3 Rời khỏi vị trí làm việc, thay đổi vị trí làm việc hoặc chuyển đổi công việc mà không được phép trong giờ làm việc;\n工作时间内，擅自离岗、窜岗、换岗；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.2.4","content":"6.4.5.2.4 Quay lại làm việc sau giờ ăn hơn 10 phút là vi phạm lần đầu;\n超出用餐时间10分钟以上返回工作岗位，第一次违规者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.2.5","content":"6.4.5.2.5 Người lười biếng trong công việc, làm qua loa, kiêu ngạo, lời nói và việc làm thất thường, không có tiến bộ gì;\n工作怠情，敷衍塞责，态度傲慢，言行乖张，迄无改进者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.2.6","content":"6.4.5.2.6 Trượt trên xe nâng thủy lực.\n在油压车上滑行。"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.3.1","content":"6.4.5.3.1 Không thực hiện nghiêm ngặt hướng dẫn công việc, vi phạm quy trình vận hành, gây thiệt hại kinh tế trực tiếp cho công ty không quá 1.750.000 đồng;\n未严格按工作指导书等要求工作，造成公司直接经济损失不超1,750,000越南盾者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.3.2","content":"6.4.5.3.2 Không thực hiện đúng yêu cầu về việc lập các báo cáo, tờ trình, hồ sơ, tài liệu một cách kịp thời, rõ ràng, chính xác;\n未严格按要求及时、清晰、准确、详实填写相关业务报告等资料；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.3.3","content":"6.4.5.3.3 Không thực hiện nhiệm vụ bảo dưỡng, giữ gìn xe công, thiết bị quản lý;\n对公务车辆或经管设备未尽保养、保管责任；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.3.4","content":"6.4.5.3.4 Do sơ suất trong công việc dẫn đến vứt vật liệu chất lượng tốt vào phòng chứa rác, giá trị vật liệu không quá 1.750.000 đồng;\n工作疏忽致将良品物料丢至垃圾房，物料金额不超过1,750,000越南盾者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.3.5","content":"6.4.5.3.5 Người mang tài sản của công ty có giá trị dưới 1.050.000 đồng trong túi quần áo chống tĩnh điện ra vào cửa kiểm tra mà không có ý định xấu;\n置放在静电服口袋中非恶意违规携带1,050,000越南盾以下的公司财物出入探测门者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.3.6","content":"6.4.5.3.6 Nhân viên vào khu vực kiểm soát kho thành phẩm không mặc trang phục theo quy định trong 02 lần liên tiếp;\n进入库房成品仓管控区域人员累计两次未按规范着装；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.3.7","content":"6.4.5.3.7 Vi phạm quy định về bảo vệ tĩnh điện trong khu vực nhà máy;\n违反厂区静电防护规定；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.3.8","content":"6.4.5.3.8 Các tập tin do Trung tâm Quản lý Văn bản phân phối đã quá hạn trên 3 ngày và không được trả lại trong vòng 15 ngày;\n文管中心分发并需管控回收的档案逾期3天以上，15天以内未归还者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.3.9","content":"6.4.5.3.9 Việc không tuân thủ các quy định về quản lý thông quan tại cửa khẩu sẽ dẫn đến việc hải quan ghi nhận sai sót.\n未遵守海关卡口通关管理规定被海关登记差错。"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.4.1","content":"6.4.5.4.1 Mang thức ăn hoặc các vật dụng không cần thiết vào nơi làm việc (kẹo, đồ ăn nhẹ, trầu cau...);\n携带食品或不必要物品进出工作场所，如糖果、小吃、槟榔等；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.4.2","content":"6.4.5.4.2 Sử dụng máy ảnh ở khu vực hạn chế mà không đeo 'Giấy phép chụp ảnh';\n有拍照权限但未佩戴《拍照许可证》在管制区域使用相机者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.4.3","content":"6.4.5.4.3 Mang trái phép điện thoại di động có chức năng chụp ảnh/quay phim vào khu vực sản xuất kiểm soát - lần 1;\n违规携带具有拍照/摄像功能手机进入特定管制生产区域，第一次违规；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.4.4","content":"6.4.5.4.4 Vào khu vực nhà máy không mặc quần áo lao động, không đeo thẻ nhân viên theo quy định;\n进入厂区未按公司规定穿著工作服，佩带员工识别卡者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.4.5","content":"6.4.5.4.5 Không tuân thủ quy định về trang phục của công ty, vi phạm lần đầu;\n未遵守公司着装规范，第一次违规者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.4.6","content":"6.4.5.4.6 Không chấp hành quy định ra vào nhà máy, không ra vào đúng tuyến đường quy định;\n未遵守进出厂规则，未按规定路线出入者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.4.7","content":"6.4.5.4.7 Không hợp tác với nhân viên đang làm nhiệm vụ trong việc thực hiện kiểm tra kiểm soát ra vào;\n不配合值勤人员执行门禁检查者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.4.8","content":"6.4.5.4.8 Những hành vi khác có thể bị cảnh cáo bằng văn bản.\n其他适于书面警告处分行为者。"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.5.1","content":"6.4.5.5.1 Vi phạm hệ thống an ninh thông tin, mang thiết bị lưu trữ di động vào nhà máy mà không được đồng ý, không gây thiệt hại;\n违反资讯安全制度，未经部级主管以上同意携带可移动存储设备入厂，未造成损失者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.5.2","content":"6.4.5.5.2 Rời khỏi máy tính mà không khóa màn hình, gây rò rỉ dữ liệu và các trường hợp không nghiêm trọng;\n离开位置电脑不锁屏造成数资料泄露且情节轻微者；"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.5.3","content":"6.4.5.5.3 Vào khu vực phòng máy tính MIS mà không đăng ký hoặc không có nhà sản xuất đi kèm, phạm tội ba lần.\n进入MIS机房区域作业未登记或未陪同厂商进入MIS机房区域，累犯三次者。"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.6.1","content":"6.4.5.6.1 Có sự bỏ bê nhiệm vụ hoặc giám sát, nhưng các trường hợp đều không đáng kể.\n有失职或失察情事，而情节轻微者。"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.6.2","content":"6.4.5.6.2 Vi phạm quy định quản lý ký túc xá.\n违反宿舍管理制度。"},{"level":"Cảnh cáo VB / 书面警告","clause":"6.4.5.6.3","content":"6.4.5.6.3 Các hành vi gây tổn hại đến vệ sinh môi trường: xả rác, khạc nhổ, vẽ bậy lên tường...\n破坏环境卫生行为：乱丢垃圾，随地吐痰，涂污墙壁等。"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.1.1","content":"6.4.6.1.1 Vắng mặt liên tục từ 1 ngày đến dưới 2 ngày mà không có lý do chính đáng hoặc vắng mặt từ 2 ngày đến dưới 3 ngày trong một năm;\n无正当理由连续旷工达1天以上但未达2天，或年度累计旷工达2天以上但未达3天者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.1.2","content":"6.4.6.1.2 Thời gian đi trễ về sớm hàng tháng được cộng dồn thành 2 ngày;\n非不可抗力等理由，月度迟到、早退时间累计2天；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.1.3","content":"6.4.6.1.3 Lần đầu tiên chấm công thay người khác, nhờ người khác chấm công hộ hoặc làm giả hồ sơ chấm công;\n初次代人打卡、托人打卡或伪造出勤记录者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.2.1","content":"6.4.6.2.1 Lười biếng, làm việc qua loa, không chịu nghe lời cảnh cáo nhiều lần và gây khó khăn cho công tác quản lý;\n工作怠情，敷衍塞责，多次屡劝不听且造成管理困难者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.2.2","content":"6.4.6.2.2 Lái xe công ty hoặc vận hành máy móc, thiết bị của công ty mà không được phép;\n未经批准，擅自驾驶公司车辆或操作公司机械设备者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.2.3","content":"6.4.6.2.3 Ra vào khu vực hạn chế của công ty mà không được phép hoặc đọc tài liệu không liên quan;\n未经许可出入公司禁地或翻阅与职务无关的他人资料者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.2.4","content":"6.4.6.2.4 Gây ồn ào, đùa giỡn, đánh nhau tại nơi làm việc hoặc chửi bới đồng nghiệp nhưng ở mức độ nhẹ;\n在工作场所喧哗、嘻戏、打闹或同仁间相互谩骂吵架，情节轻微者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.2.5","content":"6.4.6.2.5 Ngủ trong giờ làm việc hoặc tại nơi làm việc mà không gây ra tổn thất;\n在工作时间、工作场所睡觉且未造成损失者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.2.6","content":"6.4.6.2.6 Uống rượu trước khi làm việc khiến không thể làm việc được;\n工作前饮酒，致使无法工作者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.2.7","content":"6.4.6.2.7 Cố ý tấn công đồng nghiệp, vu cáo, làm chứng gian để gây rối;\n对同仁恶意攻击、诬告，伪证而制造事端者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.2.8","content":"6.4.6.2.8 Làm những việc không liên quan đến công việc trong giờ làm việc, vi phạm lần thứ hai.\n做与工作无关之事，第二次违规。"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.3.1","content":"6.4.6.3.1 Vi phạm quy trình vận hành, gây thiệt hại từ 1.750.000 đồng trở lên và không quá 17.500.000 đồng hoặc tái phạm;\n违反操作规程，造成公司直接经济损失在1,750,000以上不超17,500,000越南盾者，或为累犯者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.3.2","content":"6.4.6.3.2 Vứt bỏ vật liệu chất lượng tốt vào phòng chứa rác, giá trị từ 1.750.000 đồng đến 17.500.000 đồng;\n工作疏忽致将良品物料丢至垃圾房，1,750,000以上不超17,500,000越南盾者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.3.3","content":"6.4.6.3.3 Mang vật liệu, thiết bị giá trị từ 1.050.000 đồng đến 3.500.000 đồng trong túi quần áo chống tĩnh điện ra vào cổng kiểm tra;\n置放在静电服口袋中非恶意违规携带1,050,000到3,500,000越南盾公司财物出入探测门者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.3.4","content":"6.4.6.3.4 Nhân viên vào khu vực kiểm soát kho không mặc trang phục theo quy định từ 3 lần trở lên;\n进入库房成品仓管控区域人员累计三次及以上未按规范着装；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.3.5","content":"6.4.6.3.5 Tài liệu lưu trữ bị mất hoặc không được trả lại trong hơn 15 ngày.\n文管中心分发并需管控回收的档案丢失或逾期15天以上未归还者。"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.4.1","content":"6.4.6.4.1 Tháo dỡ hoặc làm hỏng các thiết bị an toàn mà không được phép, không gây ra tai nạn;\n擅自去除或损坏安全装置，或不按规定穿戴安全护具作业，未造成事故者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.4.2","content":"6.4.6.4.2 Đặt vật liệu chặn lối thoát hiểm hoặc không sử dụng thiết bị chữa cháy đúng cách, không gây tai nạn;\n放置物料堵塞消防走火通道，未造成事故者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.4.3","content":"6.4.6.4.3 Không báo cáo kịp thời với quản lý khi mắc bệnh truyền nhiễm;\n患传染病或其它严重疾病时未及时向上司汇报者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.4.7","content":"6.4.6.4.7 Không có giấy phép mang điện thoại nhưng mang điện thoại vào khu vực hạn chế;\n无携带手机进出管制区域权限，携带手机进出管制区域者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.4.11","content":"6.4.6.4.11 Mang bật lửa, thuốc lá hoặc các vật dụng dễ cháy nổ vào khu vực nhà máy;\n携带打火机、香烟或其他易燃易爆物品或火源进入厂区；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.4.12","content":"6.4.6.4.12 Ra vào cổng mà không sử dụng thẻ được ủy quyền, hoặc có hành vi bất thường (khoan, lật, nhảy);\n员工进出闸机未使用授权卡刷卡，采用钻、翻、跃等异常行为者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.4.13","content":"6.4.6.4.13 Không tuân thủ quy định trang phục, vi phạm lần thứ hai;\n未遵守公司着装规范，第二次违规者；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.4.14","content":"6.4.6.4.14 Cố ý phá hoại tài sản công cộng hoặc đồ đạc của người khác;\n恶意损坏公物或他人物品；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.6.1","content":"6.4.6.6.1 Chuyển phòng, chuyển giường trái phép, chiếm giường của người khác;\n私自调房或床位，占用他人床位；"},{"level":"Lỗi nhỏ / 小过","clause":"6.4.6.6.2","content":"6.4.6.6.2 Đưa đồng nghiệp cùng giới tính không phải cư dân vào phòng ký túc xá hoặc cho họ ở nhờ qua đêm;\n带同性非住宿同仁至宿舍房间或包庇留宿；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.1.1","content":"6.4.7.1.1 Nghỉ việc liên tục 2 ngày nhưng dưới 3 ngày mà không có lý do chính đáng hoặc tổng thời gian nghỉ việc từ 3 ngày trở lên nhưng dưới 5 ngày trong một năm;\n无正当理由连续旷工达2天但未达3天，或年度累计旷工达3天以上但未达5天者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.1.2","content":"6.4.7.1.2 Sử dụng hành vi gian lận để được hưởng chế độ nghỉ phép có hưởng lương;\n以欺诈或隐瞒事实等手段，以获取病假、工伤假、婚假等有薪假；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.1.3","content":"6.4.7.1.3 Chấm công thay người khác hai lần, nhờ người khác chấm công;\n两次代人打卡、托人打卡或伪造出勤记录者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.1.4","content":"6.4.7.1.4 Tiết lộ lương, thưởng cá nhân, hoặc hỏi thăm lương, thưởng của người khác;\n泄漏个人薪资、奖金或打听他人薪资、奖金者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.1.5","content":"6.4.7.1.5 Vi phạm kỷ luật phòng thi như thi hộ hoặc gian lận;\n违反考场纪律，如替人代考、作弊等；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.2.1","content":"6.4.7.2.1 Gây lãng phí hoặc làm hỏng dữ liệu hoặc tài sản của nhà cung cấp, khách hàng;\n浪费或损坏供应商、客户以及其它员工的数据或财物者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.2.2","content":"6.4.7.2.2 Không chấp hành sự chỉ đạo, giám sát của người quản lý và đã được thuyết phục nhưng vẫn không chấp hành;\n拒绝听从主管人员指挥监督，经劝导仍不听从者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.2.3","content":"6.4.7.2.3 Làm việc không liên quan trong giờ làm việc, vi phạm lần thứ ba;\n做与工作无关之事，第三次违规；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.2.4","content":"6.4.7.2.4 Gây rối trật tự công cộng: đe dọa, lăng mạ đồng nghiệp.\n在公共场合扰乱公共秩序，如恐吓、辱骂同仁等。"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.3.1","content":"6.4.7.3.1 Vi phạm quy trình, gây thiệt hại từ 17.500.000 đồng đến 35.000.000 đồng;\n造成公司直接经济损失在17,500,000以上不超过35,000,000越南盾者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.4.11","content":"6.4.7.4.11 Hút thuốc ở khu vực cấm hút thuốc trong công viên;\n在园区内非吸烟区吸烟者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.4.12","content":"6.4.7.4.12 Không tuân thủ quy định trang phục, vi phạm lần thứ ba;\n未遵守公司着装规范，第三次违规者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.4.14","content":"6.4.7.4.14 Ra vào không chấp nhận kiểm tra hợp lý của nhân viên an ninh, tự ý ra vào;\n进出园区不接受保安人员合理检查，强行出入者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.4.16","content":"6.4.7.4.16 Mượn hoặc cho mượn thẻ căn cước của nhân viên khác để ra vào;\n借用其他员工识别证进出园区、厂区或宿舍区者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.4.17","content":"6.4.7.4.17 Đưa nhân viên không phải công ty vào khuôn viên Wistron mà không được phép;\n未经许可将非公司人员带入纬创园区或宿舍者；"},{"level":"Lỗi lớn / 大过","clause":"6.4.7.7.1","content":"6.4.7.7.1 Sử dụng cốc điện, nồi cơm điện hoặc uống rượu bia trong ký túc xá;\n未经许可在园区内使用电热杯、饭煲或在宿舍饮酒；"},{"level":"Sa thải / 辞退","clause":"6.4.8.1.1","content":"6.4.8.1.1 Lừa đảo công ty bằng gian lận, che giấu sự thật, cung cấp thông tin sai lệch;\n以欺诈或隐瞒事实、提供虚假资料等手段，骗取本公司录用者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.1.2","content":"6.4.8.1.2 Vắng mặt quá 3 ngày liên tiếp mà không có lý do chính đáng hoặc vắng mặt quá 5 ngày trong 1 năm;\n无正当理由连续旷工达3天以上，或年度内累计旷工达5天以上者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.1.3","content":"6.4.8.1.3 Chấm công hộ, nhờ người khác chấm công, làm giả hồ sơ từ 3 lần trở lên;\n三次或三次以上代人打卡、托人打卡或伪造出勤记录者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.1.4","content":"6.4.8.1.4 Vi phạm nguyên tắc trung thực, làm giả hồ sơ chấm công và khai báo gian dối số giờ làm thêm tổng cộng hơn 8 giờ;\n违反诚信从业原则，伪造出勤记录后虚报加班时数累计达8小时以上者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.1.5","content":"6.4.8.1.5 Báo cáo gian dối, cung cấp tài liệu sai sự thật cho cấp trên hoặc kiểm toán viên;\n对上级主管或内部稽查人员虚报、瞒报或提供虚假不实的资料者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.1.7","content":"6.4.8.1.7 Sử dụng tên công ty để lừa đảo người khác, làm tổn hại danh tiếng công ty;\n假借公司名义招摇撞骗，有损或歪曲公司名誉者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.1.8","content":"6.4.8.1.8 Tiết lộ điều kiện kinh doanh của công ty mà không được phép hoặc tiết lộ bí mật thương mại;\n未经授权披露公司经营情况或泄露公司商业机密者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.1.9","content":"6.4.8.1.9 Làm giả, đánh cắp con dấu công ty hoặc chữ ký của cấp trên, sửa đổi văn bản;\n伪造、变造、盗用公司印戳或上级签字，或撕毁涂改文件者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.1.13","content":"6.4.8.1.13 Gian dối, biển thủ công quỹ, tham nhũng, hối lộ, thiệt hại ≥35.000.000 đồng;\n营私舞弊，挪用公款，贪污受贿，有形损害达35,000,000越南盾以上者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.2.1","content":"6.4.8.2.1 Vận hành thiết bị đặc biệt mà không có giấy phép (lái xe nâng, sửa thang máy...);\n无证操作特种设备（驾驶叉车或维修电梯等）；"},{"level":"Sa thải / 辞退","clause":"6.4.8.2.3","content":"6.4.8.2.3 Không chấp hành mệnh lệnh, sao nhãng nhiệm vụ gây thiệt hại đáng kể;\n不听指挥、玩忽职守，致生变故使公司蒙受重大损失者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.3.1","content":"6.4.8.3.1 Vi phạm quy trình, bỏ bê nhiệm vụ gây thiệt hại lớn ≥35.000.000 đồng;\n工作中失职造成公司重大损失（35,000,000越南盾含本数）者。"},{"level":"Sa thải / 辞退","clause":"6.4.8.4.7","content":"6.4.8.4.7 Chủ động tấn công người khác (đấm, cào, đá, đánh bằng vật thể...);\n有主动攻击动作（挥拳、抓刺、踢腿、使用物品击打他人等）者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.4.8","content":"6.4.8.4.8 Cho người ngoài công ty mượn thẻ căn cước hoặc đưa người ngoài công ty vào nhà máy;\n将识别证借给非公司人员或带非公司人员进入公司厂区者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.4.10","content":"6.4.8.4.10 Cố ý quấy rối tình dục đồng nghiệp;\n故意对同仁实施性骚扰，查明属实者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.7.2","content":"6.4.8.7.2 Vào ký túc xá của người khác giới mà không có nhu cầu công tác;\n非工作需要进入异性宿舍者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.7.3","content":"6.4.8.7.3 Dẫn người khác giới vào phòng ký túc xá hoặc cho họ ở lại qua đêm.\n带异性进入宿舍房间或包庇留宿。"},{"level":"Sa thải / 辞退","clause":"6.4.8.8.1","content":"6.4.8.8.1 Đánh bạc, buôn lậu, buôn bán ma túy, trộm cắp, lừa đảo, tham ô trong khuôn viên công ty hoặc khu ký túc xá;\n在公司园区或宿舍区内赌博、走私、贩买毒品、盗窃、骗取公司或同仁财物者；"},{"level":"Sa thải / 辞退","clause":"6.4.8.8.2","content":"6.4.8.8.2 Người phạm tội trộm cắp, âm mưu, không tố giác, đánh nhau, cờ bạc, buôn bán/sử dụng ma túy, hành vi khiếm nhã, v.v. hoặc đã bị kết án vì những lý do khác và đã bị truy cứu trách nhiệm hành chính hoặc hình sự.\n有盗窃、伙同作案、知情不报、打架、赌博、贩卖/吸食毒品、有伤风化之行为等或因其他事由被判刑确定，被追究行政责任、刑事责任或被采取刑事强制措施的。"},{"level":"Sa thải / 辞退","clause":"6.4.8.9","content":"6.4.8.9 Chuyển đến cơ quan tư pháp: Khi lỗi của nhân viên vi phạm luật pháp, vụ việc có thể được chuyển đến cơ quan tư pháp để xử lý theo luật định.\n移送司法部门：员工所犯过失如触犯国家法律法规时，并得移送有关司法机关依法办理。"}];
+
+const titleText="HỆ THỐNG QUẢN LÝ THƯỞNG PHẠT ｜ 奖惩管理系统";const titleEl=document.getElementById('appTitle');
+function typeTitle(){titleEl.innerHTML='';for(let i=0;i<8;i++){const s=document.createElement('div');s.className='sparkle';s.style.left=`${5+Math.random()*90}%`;s.style.top=`${Math.random()*100}%`;s.style.animationDelay=`${Math.random()*2.5}s`;s.style.width=s.style.height=`${2+Math.random()*3}px`;titleEl.appendChild(s);}titleText.split('').forEach((c,i)=>{setTimeout(()=>{const s=document.createElement('span');s.className='char';s.textContent=c===' '?'\u00A0':c;titleEl.insertBefore(s,titleEl.querySelector('.sparkle'));},i*120);});setTimeout(()=>typeTitle(),titleText.length*120+3000);}
+typeTitle();
+
+let currentSheet=1;let sopLevelFilter='';
+function toggleMenu(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('sideMenu').classList.toggle('open');document.getElementById('menuOverlay').classList.toggle('open');}
+function showSheet(n){currentSheet=n;['form1','form2','form3','form4','form5'].forEach((id,i)=>{document.getElementById(id).classList.toggle('hidden',n!==(i+1));});if(n===3)renderList('mgr');if(n===4)renderList('asst');if(n===5)renderSop();}
+function toggleCheck(el){el.classList.toggle('selected');}
+
+function fixPhone(t){if(!t||t==='NA')return '';t=t.replace(/'/g,'');const pp=t.split('\n');return pp.map(p=>{p=p.trim().replace(/ /g,'');if(p.length===9&&'35789'.includes(p[0]))p='0'+p;return p;}).join('\n');}
+
+function lookupDept(val,targetId){const el=document.getElementById(targetId);if(!val||val.length<2){el.classList.remove('show');el.innerHTML='';return;}const q=val.toUpperCase();const matches=DEPT_DATA.filter(r=>r.codes.some(c=>c.toUpperCase().includes(q))||r.dept.toUpperCase().includes(q)||(r.dept_vi||'').toUpperCase().includes(q));if(!matches.length){el.classList.remove('show');el.innerHTML='';return;}const seen=new Set();let html='';matches.slice(0,8).forEach(r=>{const code=r.codes.join(', ');const key=code+r.mgr;if(seen.has(key))return;seen.add(key);const deptShow=r.dept_vi?r.dept_vi+' '+r.dept:r.dept;const mgrShow=r.mgr_vi||r.mgr;html+=`<div class="lookup-item" onclick="showDetail('${code.replace(/'/g,"\\'")}')"><div class="li-dept">${code} — ${deptShow}</div><div class="li-sub">👔 ${mgrShow}</div></div>`;});el.innerHTML=html;el.classList.add('show');}
+
+function showDetail(codeStr){const codes=codeStr.split(', ');const matches=DEPT_DATA.filter(r=>r.codes.some(c=>codes.includes(c)));if(!matches.length)return;const first=matches[0];const deptShow=first.dept_vi?(first.dept_vi+'<br>'+first.dept):first.dept;document.querySelector('#modalHeader h3').textContent=codes[0];document.querySelector('#modalHeader p').innerHTML=deptShow;let html='';matches.forEach((r,i)=>{if(!r.mgr||r.mgr==='NA')return;const py=r.mgr_py?'<br><span style="font-size:10px;color:#333;font-style:italic;">'+r.mgr_py+'</span>':'';const mgrName=r.mgr_vi?(r.mgr_vi+'<br>'+r.mgr+py):r.mgr;html+=`<div class="detail-section-title">👔 Chủ quản / 主管 ${matches.length>1?'#'+(i+1):''}</div>`;html+=dR('Họ tên / 姓名',mgrName);html+=dR('Mã nhân viên / 工号',r.mgr_id);html+=dR('Điện thoại / 电话',fixPhone(r.mgr_tel),1);if(r.mgr_ext&&r.mgr_ext!=='NA')html+=dR('Máy lẻ / 分机',r.mgr_ext);if(r.asst){html+=`<div class="detail-section-title" style="color:#43a047;">📎 Trợ lý / 秘書</div>`;html+=dR('Họ tên / 姓名',r.asst);html+=dR('Mã nhân viên / 工号',r.asst_id);html+=dR('Điện thoại / 电话',fixPhone(r.asst_tel),1);if(r.asst_ext&&r.asst_ext!=='NA')html+=dR('Máy lẻ / 分机',r.asst_ext);}});document.getElementById('modalBody').innerHTML=html;document.getElementById('detailModal').classList.add('show');document.querySelectorAll('.dept-lookup').forEach(e=>e.classList.remove('show'));}
+function dR(l,v,p){if(!v||v==='NA'||v==='')return '';if(p){const phones=fixPhone(v).split('\n');const links=phones.map(ph=>`<a href="tel:${ph.replace(/[^0-9+]/g,'')}">${ph} 📞</a>`).join('<br>');return `<div class="detail-row"><div><div class="detail-label">${l}</div></div><div class="detail-value">${links}</div></div>`;}return `<div class="detail-row"><div><div class="detail-label">${l}</div></div><div class="detail-value">${v.replace(/\n/g,'<br>')}</div></div>`;}
+function closeModal(){document.getElementById('detailModal').classList.remove('show');}
+document.getElementById('detailModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function renderList(type){const q=(document.getElementById(type==='mgr'?'searchMgr':'searchAsst').value||'').toUpperCase();const c=document.getElementById(type==='mgr'?'mgrList':'asstList');let f=DEPT_DATA;if(q.length>=2)f=DEPT_DATA.filter(r=>(r.codes.join(' ')+' '+r.dept+' '+(r.dept_vi||'')+' '+r.mgr+' '+(r.mgr_vi||'')+' '+(r.mgr_py||'')+' '+r.asst).toUpperCase().includes(q));let h='';const s=new Set();f.forEach(r=>{if(type==='asst'&&!r.asst)return;if(type==='mgr'&&(!r.mgr||r.mgr==='NA'))return;const code=r.codes.join(', ');const k=type==='mgr'?(code+r.mgr):(code+r.asst);if(s.has(k))return;s.add(k);const person=type==='mgr'?(r.mgr_vi||r.mgr):r.asst;const personCn=type==='mgr'?r.mgr:'';const py=type==='mgr'?(r.mgr_py||''):'';const tel=fixPhone(type==='mgr'?r.mgr_tel:r.asst_tel);const deptShow=r.dept_vi?r.dept_vi:r.dept;h+=`<div class="lookup-item" onclick="showDetail('${code.replace(/'/g,"\\'")}')"><div class="li-dept">${code} — ${deptShow}</div><div class="li-sub">${person} ${personCn&&person!==personCn?personCn:''} ${py?'<span style="color:#333;font-style:italic;">('+py+')</span>':''} ${tel&&tel!=='NA'?'📞 '+tel.split('\n')[0]:''}</div></div>`;});c.innerHTML=h||'<div style="padding:12px;text-align:center;color:var(--text-sub);font-size:12px;">Không tìm thấy / 未找到</div>';}
+function filterList(type){renderList(type);}
+
+function getLevelClass(lv){if(lv.includes('Khen')||lv.includes('Công')||lv.includes('Đại'))return 'reward';if(lv.includes('Cảnh'))return 'warn';if(lv.includes('nhỏ'))return 'minor';if(lv.includes('lớn'))return 'major';if(lv.includes('Sa'))return 'fire';return '';}
+function renderSop(){const q=(document.getElementById('searchSop').value||'').toUpperCase();const el=document.getElementById('sopList');let filtered=SOP_DATA;if(sopLevelFilter)filtered=filtered.filter(r=>r.level.includes(sopLevelFilter));if(q.length>=2)filtered=filtered.filter(r=>(r.content+' '+r.clause+' '+r.level).toUpperCase().includes(q));let h='';filtered.forEach((r,i)=>{const cls=getLevelClass(r.level);const lines=r.content.split('\n');const vi=lines[0]||'';const cn=lines[1]||'';h+=`<div class="sop-item" onclick="showSopDetail(${SOP_DATA.indexOf(r)})" style="animation-delay:${Math.min(i*0.02,0.3)}s"><span class="sop-level ${cls}">${r.level}</span> <span class="sop-clause">${r.clause}</span><div class="sop-vi">${vi}</div>${cn?'<div class="sop-cn">'+cn+'</div>':''}</div>`;});el.innerHTML=h||'<div style="padding:20px;text-align:center;color:var(--text-sub);">Không tìm thấy / 未找到</div>';document.getElementById('sopCount').textContent=`(${filtered.length}/${SOP_DATA.length})`;}
+function filterSop(){renderSop();}
+function filterSopLevel(el,lv){sopLevelFilter=lv;document.querySelectorAll('.sop-tag').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderSop();}
+
+function syncToPrint(){document.getElementById('p1_dept').textContent=document.getElementById('f1_dept').value;document.getElementById('p1_pos').textContent=document.getElementById('f1_pos').value;document.getElementById('p1_name').textContent=document.getElementById('f1_name').value;document.getElementById('p1_id').textContent=document.getElementById('f1_id').value;document.getElementById('p1_reason').textContent=document.getElementById('f1_reason').value;document.getElementById('p1_impact').textContent=document.getElementById('f1_impact').value;const prop=document.getElementById('f1_proposer').value;document.getElementById('p1_proposer').textContent=prop.replace(' - ','\n');document.querySelectorAll('#rewardGrid .check-item').forEach((el,i)=>{document.getElementById('pt'+i).textContent=el.classList.contains('selected')?'V':'';document.getElementById('pt'+i).style.fontSize=el.classList.contains('selected')?'22px':'';document.getElementById('pt'+i).style.fontWeight=el.classList.contains('selected')?'bold':'';});document.querySelectorAll('#punishGrid .check-item').forEach((el,i)=>{document.getElementById('pp'+i).textContent=el.classList.contains('selected')?'V':'';document.getElementById('pp'+i).style.fontSize=el.classList.contains('selected')?'22px':'';document.getElementById('pp'+i).style.fontWeight=el.classList.contains('selected')?'bold':'';});document.getElementById('p2_name').textContent=document.getElementById('f2_name').value;document.getElementById('p2_id').textContent=document.getElementById('f2_id').value;document.getElementById('p2_dept').textContent=document.getElementById('f2_dept').value;document.getElementById('p2_pos').textContent='职员\n'+document.getElementById('f2_pos').value;document.getElementById('p2_dorm').textContent=document.getElementById('f2_dorm').value;document.getElementById('p2_case').textContent=document.getElementById('f2_case').value+'\n';document.getElementById('p2_process').textContent=document.getElementById('f2_process').value;document.getElementById('p2_method').textContent='Hình Thức Xử Lý 处理方法 : '+document.getElementById('f2_method').value;document.getElementById('p2_handling').textContent=document.getElementById('f2_handling').value;}
+
+function printSheet(){if(currentSheet>2){alert('Vui lòng chuyển sang Đơn thưởng phạt hoặc Điều tra án để in');return;}syncToPrint();document.getElementById('print1').style.display='none';document.getElementById('print2').style.display='none';document.getElementById('print1').classList.add('print-hide');document.getElementById('print2').classList.add('print-hide');const ap=currentSheet===1?'print1':'print2';document.getElementById(ap).style.display='block';document.getElementById(ap).classList.remove('print-hide');['form1','form2','form3','form4','form5'].forEach(id=>{document.getElementById(id).style.display='none';});setTimeout(()=>{window.print();setTimeout(()=>{document.getElementById('print1').style.display='none';document.getElementById('print2').style.display='none';['form1','form2','form3','form4','form5'].forEach(id=>{document.getElementById(id).style.display='';});showSheet(currentSheet);},500);},100);}
+
+let currentSopData=null;
+function showSopDetail(idx){
+  const r=SOP_DATA[idx];if(!r)return;currentSopData=r;
+  document.querySelector('#sopModalHeader h3').textContent=r.clause;
+  document.querySelector('#sopModalHeader p').textContent=r.level;
+  const lines=r.content.split('\n');const vi=lines[0]||'';const cn=lines[1]||'';
+  document.getElementById('sopModalBody').innerHTML=`<div style="font-size:16px;line-height:1.7;color:var(--text);margin-bottom:12px;padding:8px 0;border-bottom:1px dashed var(--card-border);">${vi}</div>${cn?'<div style="font-size:15px;line-height:1.7;color:var(--text-sub);padding:8px 0;">'+cn+'</div>':''}`;
+  document.getElementById('copyStatus').style.display='none';
+  document.getElementById('sopModal').classList.add('show');
+}
+function closeSopModal(){document.getElementById('sopModal').classList.remove('show');}
+document.getElementById('sopModal').addEventListener('click',function(e){if(e.target===this)closeSopModal();});
+function copySopClause(){
+  if(!currentSopData)return;
+  const text=currentSopData.content;
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>{showCopyOk();}).catch(()=>{fallbackCopy(text);});}
+  else{fallbackCopy(text);}
+}
+function fallbackCopy(text){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showCopyOk();}catch(e){}document.body.removeChild(ta);}
+function showCopyOk(){const el=document.getElementById('copyStatus');el.style.display='block';setTimeout(()=>{el.style.display='none';},2500);}
+
+</script>
+</body>
+</html>
